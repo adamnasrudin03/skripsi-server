@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var dashboardRouter = require('./app/dashboard/router');
-var categoryRouter = require('./app/category/router');
+var ajaranRouter = require('./app/ajaran/router');
 
 var app = express();
 
@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/adminlte', express.static(path.join(__dirname, '/node_modules/admin-lte/')));
 
 app.use('/', dashboardRouter);
-app.use('/ajaran', categoryRouter);
+app.use('/ajaran', ajaranRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
