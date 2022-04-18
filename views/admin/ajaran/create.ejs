@@ -36,17 +36,17 @@
                   <div class="card-body">
                     <div class="form-group">
                       <label for="start_year">Tahun Awal</label>
-                      <input type="number" class="form-control" id="start_year" name="start_year"  placeholder="Masukan tahun awal ajaran">
+                      <input type="number" class="form-control" id="start_year" name="start_year"  placeholder="Masukan tahun awal ajaran" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="end_year">Tahun Akhir</label>
-                        <input type="number" class="form-control" id="end_year" name="end_year" placeholder="Masukan tahun akhir ajaran">
+                        <input type="number" class="form-control" id="end_year" name="end_year" placeholder="Masukan tahun akhir ajaran" required>
                       </div>
                       
                     <div class="form-group">
                         <label for="semester">Semester</label>
-                        <select id="semester" name="semester" class="form-control select2" style="width: 100%;">
+                        <select id="semester" name="semester" class="form-control select2" style="width: 100%;" required>
                             <option selected="selected" value="" hidden>Masukan semester tahun ajaran</option>
                             <option value="ganjil">Ganjil</option>
                             <option value="genap">Genap</option>
@@ -57,7 +57,7 @@
                       <label  for="start_at" >Tanggal Awal Periode</label>
                         <div class="input-group date" id="start_at" data-target-input="nearest">
                             <input type="text" id="start_at" name="start_at" class="form-control datetimepicker-input" data-target="#start_at" 
-                                placeholder="Masukan tanggal awal pengajuan proposal"/>
+                                placeholder="Masukan tanggal awal pengajuan proposal" required/>
                             <div class="input-group-append" data-target="#start_at" data-toggle="datetimepicker">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
@@ -68,7 +68,7 @@
                         <label  for="end_at" >Tanggal Akhir Periode</label>
                           <div class="input-group date" id="end_at" data-target-input="nearest">
                               <input type="text" id="end_at" name="end_at" class="form-control datetimepicker-input" data-target="#end_at"
-                                placeholder="Masukan tanggal akhir pengajuan proposal"/>
+                                placeholder="Masukan tanggal akhir pengajuan proposal" required/>
                               <div class="input-group-append" data-target="#end_at" data-toggle="datetimepicker">
                                   <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                               </div>
