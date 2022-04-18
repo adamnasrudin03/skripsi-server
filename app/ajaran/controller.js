@@ -54,4 +54,20 @@ module.exports={
     }
   },
   
+  actionEdit : async(req, res)=>{
+    try {
+      const { id } = req.params
+      const { start_year, end_year, semester, start_at, end_at } = req.body
+
+      await Ajaran.findOneAndUpdate({
+        _id: id
+      },{ start_year, end_year, semester, start_at, end_at });
+
+      res.redirect('/ajaran');
+      
+    } catch (err) {
+      console.log("err : ", err)
+    }
+  },
+
 }
