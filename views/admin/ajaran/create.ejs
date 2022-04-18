@@ -1,0 +1,96 @@
+<%- include ../../partials/header.ejs %>
+<%- include ../../partials/navbar.ejs %>
+<%- include ../../partials/sidebar.ejs %>
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Tahun Ajaran</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item"><a href="/ajaran">Tahun Ajaran</a></li>
+              <li class="breadcrumb-item active">Tambah</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-primary">
+                <div class="card-header">
+                  <h3 class="card-title">Form Tambah Tahun Ajaran</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form action="/ajaran/create" method="post">
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="start_year">Tahun Awal</label>
+                      <input type="number" class="form-control" id="start_year" name="start_year"  placeholder="Masukan tahun awal ajaran">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="end_year">Tahun Akhir</label>
+                        <input type="number" class="form-control" id="end_year" name="end_year" placeholder="Masukan tahun akhir ajaran">
+                      </div>
+                      
+                    <div class="form-group">
+                        <label for="semester">Semester</label>
+                        <select id="semester" name="semester" class="form-control select2" style="width: 100%;">
+                            <option selected="selected" value="" hidden>Masukan semester tahun ajaran</option>
+                            <option value="ganjil">Ganjil</option>
+                            <option value="genap">Genap</option>
+                        </select>
+                    </div>
+                      
+                    <div class="form-group">
+                      <label  for="start_at" >Tanggal Awal Periode</label>
+                        <div class="input-group date" id="start_at" data-target-input="nearest">
+                            <input type="text" id="start_at" name="start_at" class="form-control datetimepicker-input" data-target="#start_at" 
+                                placeholder="Masukan tanggal awal pengajuan proposal"/>
+                            <div class="input-group-append" data-target="#start_at" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  for="end_at" >Tanggal Akhir Periode</label>
+                          <div class="input-group date" id="end_at" data-target-input="nearest">
+                              <input type="text" id="end_at" name="end_at" class="form-control datetimepicker-input" data-target="#end_at"
+                                placeholder="Masukan tanggal akhir pengajuan proposal"/>
+                              <div class="input-group-append" data-target="#end_at" data-toggle="datetimepicker">
+                                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- /.card-body -->
+  
+                  <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </form>
+              </div>
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+<%- include ../../partials/footer.ejs %>
+<%- include ../../partials/js.ejs %>
