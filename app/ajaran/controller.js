@@ -3,14 +3,24 @@ const Ajaran = require('./model')
 module.exports={
   index: async(req, res)=>{
     try {
+      const alertMessage = req.flash("alertMessage")
+      const alertStatus = req.flash("alertStatus")
+
+      const alert = { message: alertMessage, status: alertStatus}
       const ajaran = await Ajaran.find().sort({ createdAt: -1 })
+
+      console.log("alert >>")
+      console.log(alert)
 
       res.render('admin/ajaran/view_ajaran',{
         ajaran,
+        alert,
         title: 'Tahun Ajaran'
       })
     } catch (err) {
-      console.log("err : ", err)
+      req.flash('alertMessage', `${err.message}`)
+      req.flash('alertStatus', 'danger')
+      res.redirect('/ajaran')
     }
   },
 
@@ -20,7 +30,9 @@ module.exports={
         title: 'Taambah Tahun Ajaran'
       })
     } catch (err) {
-      console.log("err : ", err)
+      req.flash('alertMessage', `${err.message}`)
+      req.flash('alertStatus', 'danger')
+      res.redirect('/ajaran')
     }
   },
 
@@ -31,10 +43,15 @@ module.exports={
       let ajaran = await Ajaran({ start_year, end_year, semester, start_at, end_at })
       await ajaran.save();
 
+      req.flash('alertMessage', "Berhasil tambah data tahun ajaran")
+      req.flash('alertStatus', "success")
+
       res.redirect('/ajaran')
       
     } catch (err) {
-      console.log("err : ", err)
+      req.flash('alertMessage', `${err.message}`)
+      req.flash('alertStatus', 'danger')
+      res.redirect('/ajaran')
     }
   },
 
@@ -50,7 +67,9 @@ module.exports={
       })
       
     } catch (err) {
-      console.log("err : ", err)
+      req.flash('alertMessage', `${err.message}`)
+      req.flash('alertStatus', 'danger')
+      res.redirect('/ajaran')
     }
   },
   
@@ -63,10 +82,15 @@ module.exports={
         _id: id
       },{ start_year, end_year, semester, start_at, end_at });
 
+      req.flash('alertMessage', "Berhasil ubah data tahun ajaran")
+      req.flash('alertStatus', "success")
+
       res.redirect('/ajaran');
       
     } catch (err) {
-      console.log("err : ", err)
+      req.flash('alertMessage', `${err.message}`)
+      req.flash('alertStatus', 'danger')
+      res.redirect('/ajaran')
     }
   },
   
@@ -78,10 +102,15 @@ module.exports={
         _id: id
       });
 
+      req.flash('alertMessage', "Berhasil hapus data tahun ajaran")
+      req.flash('alertStatus', "success")
+
       res.redirect('/ajaran')
       
     } catch (err) {
-      console.log("err : ", err)
+      req.flash('alertMessage', `${err.message}`)
+      req.flash('alertStatus', 'danger')
+      res.redirect('/ajaran')
     }
   }
 
