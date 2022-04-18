@@ -3,7 +3,10 @@ const Ajaran = require('./model')
 module.exports={
   index: async(req, res)=>{
     try {
+      const ajaran = await Ajaran.find()
+
       res.render('admin/ajaran/view_ajaran',{
+        ajaran,
         title: 'Tahun Ajaran'
       })
     } catch (err) {
