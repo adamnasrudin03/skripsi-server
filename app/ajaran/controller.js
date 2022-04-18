@@ -13,6 +13,7 @@ module.exports={
       console.log("err : ", err)
     }
   },
+
   viewCreate: async(req, res)=>{
     try {
       res.render('admin/ajaran/create',{
@@ -22,6 +23,7 @@ module.exports={
       console.log("err : ", err)
     }
   },
+
   actionCreate : async(req, res)=>{
     try {
       const { start_year, end_year, semester, start_at, end_at } = req.body
@@ -35,4 +37,21 @@ module.exports={
       console.log("err : ", err)
     }
   },
+
+  viewEdit : async(req, res)=>{
+    try {
+      const { id } = req.params
+      
+      const ajaran = await Ajaran.findOne({_id : id})
+      
+      res.render('admin/ajaran/edit', {
+        ajaran,
+        title: 'Ubah Tahun Ajaran'
+      })
+      
+    } catch (err) {
+      console.log("err : ", err)
+    }
+  },
+  
 }
