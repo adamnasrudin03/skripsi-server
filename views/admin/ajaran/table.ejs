@@ -16,12 +16,12 @@
           <td><%= ajaran[i].semester %> </td>
           <td><%= ajaran[i].start_at %> s/d <%= ajaran[i].end_at %> </td>
           <td>
-            <form action="/ajaran/delete/<%= ajaran[i]._id %>?_method=DELETE" method="POST">
+            <form action="/ajaran/delete/<%= ajaran[i]._id %>?_method=DELETE" method="post">
               <a href="/ajaran/edit/<%= ajaran[i]._id %>" class="btn btn-info btn-sm">
                 <i class="fas fa-pencil-alt"></i>
                 Ubah
               </a>
-              <button class="btn btn-danger btn-sm">
+              <button class="btn btn-danger btn-sm" type="submit">
                 <i class="fas fa-trash"></i>
                 Hapus
               </button>

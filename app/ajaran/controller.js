@@ -69,5 +69,20 @@ module.exports={
       console.log("err : ", err)
     }
   },
+  
+  actionDelete: async(req, res)=>{
+    try {
+      const { id } = req.params;
+
+      await Ajaran.findOneAndRemove({
+        _id: id
+      });
+
+      res.redirect('/ajaran')
+      
+    } catch (err) {
+      console.log("err : ", err)
+    }
+  }
 
 }
