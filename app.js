@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var methodOverride = require('method-override');
 
 var dashboardRouter = require('./app/dashboard/router');
 var ajaranRouter = require('./app/ajaran/router');
@@ -18,6 +19,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// override with POST having ?_method=DELETE
+app.use(methodOverride('_method'));
 app.use('/adminlte', express.static(path.join(__dirname, '/node_modules/admin-lte/')));
 
 app.use('/', dashboardRouter);
