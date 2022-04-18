@@ -3,7 +3,7 @@ const Ajaran = require('./model')
 module.exports={
   index: async(req, res)=>{
     try {
-      const ajaran = await Ajaran.find()
+      const ajaran = await Ajaran.find().sort({ createdAt: -1 })
 
       res.render('admin/ajaran/view_ajaran',{
         ajaran,
@@ -43,7 +43,7 @@ module.exports={
       const { id } = req.params
       
       const ajaran = await Ajaran.findOne({_id : id})
-      
+
       res.render('admin/ajaran/edit', {
         ajaran,
         title: 'Ubah Tahun Ajaran'
