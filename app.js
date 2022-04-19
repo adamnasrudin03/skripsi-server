@@ -36,6 +36,7 @@ app.use(methodOverride('_method'));
 app.use('/adminlte', express.static(path.join(__dirname, '/node_modules/admin-lte/')));
 
 app.use('/', dashboardRouter);
+app.use('/dashboard', dashboardRouter);
 app.use('/ajaran', ajaranRouter);
 
 // api
