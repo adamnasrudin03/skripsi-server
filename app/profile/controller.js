@@ -38,5 +38,17 @@ module.exports = {
       res.redirect('/ajaran')
     }
   },
+
+  viewChangePassword: async (req, res) => {
+    try {
+
+      res.render('auth/change_password', {
+        title: 'Ganti Kata Sandi',
+      })
+    } catch (err) {
+      console.log(err)
+
+    }
+  },
   
 }

@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-const {index, viewEdit} = require('./controller')
+const {index, viewEdit, viewChangePassword} = require('./controller')
 
-/* GET home page. */
 router.get('/', index);
 router.get('/edit', viewEdit);
+router.get('/change-password', viewChangePassword);
 
 
 module.exports = router;
