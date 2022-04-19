@@ -1,0 +1,159 @@
+<%- include ../partials/header.ejs %>
+<%- include ../partials/navbar.ejs %>
+<%- include ../partials/sidebar.ejs %>
+<div class="wrapper">
+
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Admin Profile</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+              <li class="breadcrumb-item active">Admin Profile</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+
+            <!-- Profile Image -->
+            <div class="card card-primary card-outline">
+              
+              <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                  <li class="nav-item"><a class="nav-link active" href="#overview" data-toggle="tab">Detail</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Ubah</a></li>
+                </ul>
+              </div>
+
+              <div class="card-body box-profile">
+                <div class="text-center">
+                  <img class="profile-user-img img-fluid img-circle"
+                       src="/adminlte/dist/img/AdminLTELogo.png"
+                       alt="User profile picture">
+                </div>
+
+                <h3 class="profile-username text-center">Aji Nurrohman</h3>
+                <p class="text-muted text-center">Super User</p>
+                
+              </div>
+              
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+          </div>
+        </div>
+        <div class="row">
+          <!-- /.col -->
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="tab-content">
+
+                  <div class="active tab-pane" id="overview">
+                    <h3>Detail Profile</h3>
+                    <form class="form-horizontal">
+                      <div class="form-group row">
+                        <label for="spanName" class="col-sm-2 col-form-label">Nama</label>
+                        <div class="col-sm-10">
+                          <span class="form-control" id="spanName" >
+                            Aji Nurrohman
+                          </span>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="spanEmail" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                          <span class="form-control" id="spanEmail" >
+                            admin@gmail.com
+                          </span>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="spanGender" class="col-sm-2 col-form-label">Jenis Kelamin</label>
+                        <div class="col-sm-10">
+                          <span class="form-control" id="spanGender" >
+                            Laki - laki
+                          </span>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="spanRole" class="col-sm-2 col-form-label">Akses</label>
+                        <div class="col-sm-10">
+                          <span class="form-control" id="spanRole" >
+                            Admin
+                          </span>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <!-- /.tab-pane -->
+
+                  <div class="tab-pane" id="settings">
+                    <h3>Ubah Profile</h3>
+                    <form class="form-horizontal">
+                      <div class="form-group row">
+                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                          <input type="email" class="form-control" id="inputName" placeholder="Name">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                          <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputGender" class="col-sm-2 col-form-label">Jenis Kelamin</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="inputGender" placeholder="Jenis Kelamin">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputRole" class="col-sm-2 col-form-label">Akses</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="inputRole" placeholder="Akses">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="offset-sm-2 col-sm-10">
+                          <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+              </div><!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+</div>
+
+<%- include ../partials/footer.ejs %>
+<%- include ../partials/js.ejs %>

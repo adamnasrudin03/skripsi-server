@@ -9,6 +9,7 @@ const flash = require('connect-flash');
 
 var dashboardRouter = require('./app/dashboard/router');
 var ajaranRouter = require('./app/ajaran/router');
+var profileRouter = require('./app/profile/router');
 
 var apiAjaranRouter = require('./app/ajaran/apiRouter');
 
@@ -36,6 +37,7 @@ app.use(methodOverride('_method'));
 app.use('/adminlte', express.static(path.join(__dirname, '/node_modules/admin-lte/')));
 
 app.use('/', dashboardRouter);
+app.use('/profile', profileRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/ajaran', ajaranRouter);
 
