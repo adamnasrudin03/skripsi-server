@@ -10,7 +10,10 @@ const flash = require('connect-flash');
 var dashboardRouter = require('./app/dashboard/router');
 var ajaranRouter = require('./app/ajaran/router');
 
+var apiAjaranRouter = require('./app/ajaran/apiRouter');
+
 var app = express();
+const URL = `/api/v1`
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -34,6 +37,9 @@ app.use('/adminlte', express.static(path.join(__dirname, '/node_modules/admin-lt
 
 app.use('/', dashboardRouter);
 app.use('/ajaran', ajaranRouter);
+
+// api
+app.use(`${URL}/ajaran-years`, apiAjaranRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

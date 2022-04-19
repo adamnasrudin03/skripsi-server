@@ -112,6 +112,16 @@ module.exports={
       req.flash('alertStatus', 'danger')
       res.redirect('/ajaran')
     }
-  }
+  },
+  
+  apiListAjaran: async (req, res) => {
+    try {
+      const ajaran = await Ajaran.find().sort({ createdAt: -1 }).limit(5)
+
+      res.status(200).json({ data: ajaran })
+    } catch (err) {
+      res.status(500).json({ message: err.message || `Internal server error` })
+    }
+  },
 
 }
