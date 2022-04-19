@@ -39,7 +39,19 @@
           <p>
               Mohon maaf terjadi kesalahan, mohon periksa kembali  <br/>
               atau <a href="/dashboard">kembali ke halaman dashboard</a>
+              <br/>
           </p>
+          
+        <% if(error.status == 500){ %>
+          <div>
+              <h3>
+                  Stack:
+              </h3>
+              <p style="font-size: 14px; text-align: justify;">
+                  <%= error.stack %>
+              </p>
+          </div>
+        <% } %>
 
         </div>
         <!-- /.error-content -->
