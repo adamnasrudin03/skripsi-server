@@ -1,0 +1,65 @@
+<table id="example2" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+      <th>No</th>
+      <th>Nama</th>
+      <th>Email</th>
+      <th>No Whatsapp</th>
+      <th>Jenjang Pendidikan</th>
+      <th>Status</th>
+      <th>Aksi</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% for(let i = 0; i < dosen.length; i++){ %>
+        <tr>
+          <td><%= i + 1 %></td>
+          <td><%= dosen[i].nama %>, <%= dosen[i].gelar %> </td>
+          <td><%= dosen[i].email %> </td>
+          <td><%= dosen[i].no_wa %> </td>
+          <td>
+            <% if(Dosen[i].jenjang_pendidikan === 0.5) { %>
+              S2
+            <% } else { %>
+              S3
+            <% } %>
+          </td>
+          <td>
+            <% if(Dosen[i].status === 'Y') { %>
+              <span class="badge badge-success">
+                Aktif
+              </span>
+            <% } else { %>
+              <span class="badge badge-danger">
+                Tidak aktif
+              </span>
+            <% } %>
+          </td>
+          <td>
+            <form action="/dosen/status/<%= dosen[i]._id %>?_method=PUT" method="POST" style="display: inline-block;">
+              <button class="btn btn-primary btn-sm">
+                <i class="fas fa-folder"></i>
+                <% if(dosen[i].status === 'Y') { %>
+                    Matikan
+                <% } else { %>
+                    Hidupkan
+                <% } %>
+              </button>
+            </form>
+            <form action="/dosen/delete/<%= dosen[i]._id %>?_method=DELETE" method="post">
+              <a href="/dosen/edit/<%= dosen[i]._id %>" class="btn btn-info btn-sm">
+                <i class="fas fa-pencil-alt"></i>
+                Ubah
+              </a>
+              <button class="btn btn-danger btn-sm" type="submit">
+                <i class="fas fa-trash"></i>
+                Hapus
+              </button>
+            </form>
+          </td>
+        </tr>
+      <% } %>
+
+    </tbody>
+    </tfoot>
+  </table>
