@@ -24,8 +24,9 @@ let dosenSchema = mongoose.Schema({
     require: [true, 'No whatsapp dosen harus diiisi']
   },
   status: {
-    type: Boolean,
-    default: false,
+    type: String,
+    enum: ['Y', 'N'],
+    default: 'Y',
     require: [true, 'Status dosen harus diiisi']
   },
   jenjang_pendidikan: {
