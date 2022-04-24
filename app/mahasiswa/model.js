@@ -50,7 +50,8 @@ let mahasiswaSchema = mongoose.Schema({
   dosen_sebelum : {type : String, default: '-'},
   ajaran_id : {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Ajaran'
+    ref: 'Ajaran',
+    require: [true, 'Tahun Ajaran skripsi harus diiisi']
   },
   dosen_id : {
     type: mongoose.Schema.Types.ObjectId,
