@@ -132,4 +132,25 @@ module.exports={
     }
   },
 
+  actionDelete: async(req, res)=>{
+    try {
+      const { id } = req.params;
+
+      await Dosen.findOneAndRemove({
+        _id: id
+      });
+
+      req.flash('alertMessage', "Berhasil hapus data dosen pembimbing")
+      req.flash('alertStatus', "success")
+
+      res.redirect('/dosen')
+      
+    } catch (err) {
+      req.flash('alertMessage', `${err.message}`)
+      req.flash('alertStatus', 'danger')
+      res.redirect('/dosen')
+    }
+  },
+  
+
 }
