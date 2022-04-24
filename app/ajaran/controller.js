@@ -118,9 +118,9 @@ module.exports={
     try {
       const ajaran = await Ajaran.find().sort({ createdAt: -1 }).limit(5)
 
-      res.status(200).json({ data: ajaran })
+      res.status(200).json({ message: 'ok', data: ajaran })
     } catch (err) {
-      res.status(500).json({ message: err.message || `Internal server error` })
+      res.status(500).json({ message: err.message || `Internal server error` , data: [] })
     }
   },
 
