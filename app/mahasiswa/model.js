@@ -15,6 +15,10 @@ let mahasiswaSchema = mongoose.Schema({
     type: String,
     require: [true, 'Email mahasiswa harus diiisi']
   },
+  lanjutan: {
+    type: Boolean,
+    default: false
+  },
   semester: {
     type: String,
     require: [true, 'Semester mahasiswa saat ini harus diiisi']
