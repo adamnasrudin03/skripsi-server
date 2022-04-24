@@ -1,0 +1,491 @@
+<%- include ../../partials/header.ejs %>
+<%- include ../../partials/navbar.ejs %>
+<%- include ../../partials/sidebar.ejs %>
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Dosen Pembimbing</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/">Beranda</a></li>
+              <li class="breadcrumb-item"><a href="/dosen">Dosen Pembimbing</a></li>
+              <li class="breadcrumb-item active">Ubah</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-primary">
+                <div class="card-header">
+                  <h3 class="card-title">Form Ubah Dosen Pembimbing</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form action="/dosen/create" method="post">
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="nidn">No Induk Dosen Nasional</label>
+                      <input type="text" class="form-control" id="nidn" name="nidn"  placeholder="Masukan NIDN dosen" 
+                        required
+                        value="<%= dosen.nidn %>"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                      <label for="nama">Nama Lengkap</label>
+                      <input type="text" class="form-control" id="nama" name="nama"  placeholder="Masukan nama lengkap dosen" 
+                        required
+                        value="<%= dosen.nama %>"
+                        >
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="gelar">Gelar</label>
+                      <input type="text" class="form-control" id="gelar" name="gelar" placeholder="Masukan gelar dosen" 
+                        required
+                        value="<%= dosen.gelar %>"
+                        >
+                    </div>
+                      
+                    <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="email" class="form-control" id="email" name="email" placeholder="Masukan email dosen" 
+                        required
+                        value="<%= dosen.email %>"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                      <label for="no_wa">No Whatsapp</label>
+                      <input type="number" class="form-control" id="no_wa" name="no_wa" placeholder="Masukan no whatsapp dosen" 
+                        required
+                        value="<%= dosen.no_wa %>"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pendidikan">Jenjang Pendidikan</label>
+                        <select id="pendidikan" name="pendidikan" class="form-control select2" style="width: 100%;" 
+                          required>
+                            <option selected="selected" value="" hidden>Masukan jenjang pendidikan dosen</option>
+                            <option value="0.5" 
+                              <% if(dosen.pendidikan == "0.5") { %>
+                              selected
+                              <% } %> 
+                            >S2</option>
+                            <option value="1"
+                              <% if(dosen.pendidikan == "1") { %>
+                                selected
+                                <% } %> 
+                            >S3</option>
+                        </select>
+                    </div>
+                      
+                    <div class="form-group">
+                      <label for="fungsional">Jabatan Fungsional</label>
+                      <select id="fungsional" name="fungsional" class="form-control select2" style="width: 100%;" 
+                        required>
+                          <option selected="selected" value="" hidden>Masukan jabatan fungsional dosen</option>
+                          <option value="0.25"
+                            <% if(dosen.fungsional == "0.25") { %>
+                            selected
+                            <% } %> >Tenaga Pengajar</option>
+                          <option value="0.5"
+                            <% if(dosen.fungsional == "0.5") { %>
+                            selected
+                            <% } %> 
+                            >Asisten Ahli</option>
+                          <option value="0.75" 
+                            <% if(dosen.fungsional == "0.75") { %>
+                            selected
+                            <% } %> >Lektor</option>
+                          <option value="1" 
+                            <% if(dosen.fungsional == "1") { %>
+                            selected
+                            <% } %> >Lektor Kepala</option>
+                      </select>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="jumlah">Jumlah Bimbingan</label>
+                      <select id="jumlah" name="jumlah" class="form-control select2" style="width: 100%;" 
+                        required>
+                          <option selected="selected" value="" hidden>Masukan jumlah bimbingan dosen</option>
+                          <option value="0" 
+                            <% if(dosen.jumlah == "0") { %>
+                            selected
+                            <% } %> >21 - 25 (Sangat Banyak)</option>
+                          <option value="0.25" 
+                            <% if(dosen.jumlah == "0.25") { %>
+                            selected
+                            <% } %> >16 - 20 (Banyak)</option>
+                          <option value="0.5" 
+                            <% if(dosen.jumlah == "0.5") { %>
+                            selected
+                            <% } %> >11 - 15 (Cukup)</option>
+                          <option value="0.75" 
+                            <% if(dosen.jumlah == "0.75") { %>
+                            selected
+                            <% } %> >06 - 10 (Sedikit)</option>
+                          <option value="1" 
+                            <% if(dosen.jumlah == "1") { %>
+                            selected
+                            <% } %> >01 - 05 (Sangat Sedikit)</option>
+                      </select>
+                    </div>
+
+                    <br/>
+                    <h4><b> Bidang Keahlian </b></h4>
+                    <b> <hr/> </b>
+                    <br/>
+                    
+                    <div class="form-group">
+                      <label for="bidang_aplikasi_desktop"> Aplikasi Desktop</label>
+                      <select id="bidang_aplikasi_desktop" name="bidang_aplikasi_desktop" class="form-control select2" style="width: 100%;" 
+                        required>
+                          <option selected="selected" value="" hidden>Masukan tingkat keahlian dosen, pada bidang aplikasi desktop</option>
+                          <option value="0.125" 
+                            <% if(dosen.bidang_aplikasi_desktop == "0.125") { %>
+                            selected
+                            <% } %> >Tingkat 8</option>
+                          <option value="0.250"
+                            <% if(dosen.bidang_aplikasi_desktop == "0.250") { %>
+                            selected
+                            <% } %> >Tingkat 7</option>
+                          <option value="0.375" 
+                            <% if(dosen.bidang_aplikasi_desktop == "0.375") { %>
+                            selected
+                            <% } %> >Tingkat 6</option>
+                          <option value="0.500" 
+                            <% if(dosen.bidang_aplikasi_desktop == "0.500") { %>
+                            selected
+                            <% } %> >Tingkat 5</option>
+                          <option value="0.625"
+                            <% if(dosen.bidang_aplikasi_desktop == "0.625") { %>
+                            selected
+                            <% } %> >Tingkat 4</option>
+                          <option value="0.750" 
+                            <% if(dosen.bidang_aplikasi_desktop == "0.750") { %>
+                            selected
+                            <% } %> >Tingkat 3</option>
+                          <option value="0.875" 
+                            <% if(dosen.bidang_aplikasi_desktop == "0.875") { %>
+                            selected
+                            <% } %> >Tingkat 2</option>
+                          <option value="1" 
+                            <% if(dosen.bidang_aplikasi_desktop == "1") { %>
+                            selected
+                            <% } %> >Tingkat 1</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="bidang_aplikasi_web"> Aplikasi Web</label>
+                      <select id="bidang_aplikasi_web" name="bidang_aplikasi_web" class="form-control select2" style="width: 100%;" 
+                        required>
+                          <option selected="selected" value="" hidden>Masukan tingkat keahlian dosen, pada bidang aplikasi web</option>
+                          <option value="0.125" 
+                            <% if(dosen.bidang_aplikasi_web == "0.125") { %>
+                            selected
+                            <% } %> >Tingkat 8</option>
+                          <option value="0.250"
+                            <% if(dosen.bidang_aplikasi_web == "0.250") { %>
+                            selected
+                            <% } %> >Tingkat 7</option>
+                          <option value="0.375" 
+                            <% if(dosen.bidang_aplikasi_web == "0.375") { %>
+                            selected
+                            <% } %> >Tingkat 6</option>
+                          <option value="0.500" 
+                            <% if(dosen.bidang_aplikasi_web == "0.500") { %>
+                            selected
+                            <% } %> >Tingkat 5</option>
+                          <option value="0.625"
+                            <% if(dosen.bidang_aplikasi_web == "0.625") { %>
+                            selected
+                            <% } %> >Tingkat 4</option>
+                          <option value="0.750" 
+                            <% if(dosen.bidang_aplikasi_web == "0.750") { %>
+                            selected
+                            <% } %> >Tingkat 3</option>
+                          <option value="0.875" 
+                            <% if(dosen.bidang_aplikasi_web == "0.875") { %>
+                            selected
+                            <% } %> >Tingkat 2</option>
+                          <option value="1" 
+                            <% if(dosen.bidang_aplikasi_web == "1") { %>
+                            selected
+                            <% } %> >Tingkat 1</option>
+                      </select>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="bidang_aplikasi_mobile"> Aplikasi Mobile</label>
+                      <select id="bidang_aplikasi_mobile" name="bidang_aplikasi_mobile" class="form-control select2" style="width: 100%;" 
+                        required>
+                          <option selected="selected" value="" hidden>Masukan tingkat keahlian dosen, pada bidang aplikasi mobile</option>
+                          <option value="0.125" 
+                            <% if(dosen.bidang_aplikasi_mobile == "0.125") { %>
+                            selected
+                            <% } %> >Tingkat 8</option>
+                          <option value="0.250"
+                            <% if(dosen.bidang_aplikasi_mobile == "0.250") { %>
+                            selected
+                            <% } %> >Tingkat 7</option>
+                          <option value="0.375" 
+                            <% if(dosen.bidang_aplikasi_mobile == "0.375") { %>
+                            selected
+                            <% } %> >Tingkat 6</option>
+                          <option value="0.500" 
+                            <% if(dosen.bidang_aplikasi_mobile == "0.500") { %>
+                            selected
+                            <% } %> >Tingkat 5</option>
+                          <option value="0.625"
+                            <% if(dosen.bidang_aplikasi_mobile == "0.625") { %>
+                            selected
+                            <% } %> >Tingkat 4</option>
+                          <option value="0.750" 
+                            <% if(dosen.bidang_aplikasi_mobile == "0.750") { %>
+                            selected
+                            <% } %> >Tingkat 3</option>
+                          <option value="0.875" 
+                            <% if(dosen.bidang_aplikasi_mobile == "0.875") { %>
+                            selected
+                            <% } %> >Tingkat 2</option>
+                          <option value="1" 
+                            <% if(dosen.bidang_aplikasi_mobile == "1") { %>
+                            selected
+                            <% } %> >Tingkat 1</option>
+                      </select>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="bidang_data_mining"> Data Mining</label>
+                      <select id="bidang_data_mining" name="bidang_data_mining" class="form-control select2" style="width: 100%;" 
+                        required>
+                          <option selected="selected" value="" hidden>Masukan tingkat keahlian dosen, pada bidang data mining</option>
+                          <option value="0.125" 
+                            <% if(dosen.bidang_data_mining == "0.125") { %>
+                            selected
+                            <% } %> >Tingkat 8</option>
+                          <option value="0.250"
+                            <% if(dosen.bidang_data_mining == "0.250") { %>
+                            selected
+                            <% } %> >Tingkat 7</option>
+                          <option value="0.375" 
+                            <% if(dosen.bidang_data_mining == "0.375") { %>
+                            selected
+                            <% } %> >Tingkat 6</option>
+                          <option value="0.500" 
+                            <% if(dosen.bidang_data_mining == "0.500") { %>
+                            selected
+                            <% } %> >Tingkat 5</option>
+                          <option value="0.625"
+                            <% if(dosen.bidang_data_mining == "0.625") { %>
+                            selected
+                            <% } %> >Tingkat 4</option>
+                          <option value="0.750" 
+                            <% if(dosen.bidang_data_mining == "0.750") { %>
+                            selected
+                            <% } %> >Tingkat 3</option>
+                          <option value="0.875" 
+                            <% if(dosen.bidang_data_mining == "0.875") { %>
+                            selected
+                            <% } %> >Tingkat 2</option>
+                          <option value="1" 
+                            <% if(dosen.bidang_data_mining == "1") { %>
+                            selected
+                            <% } %> >Tingkat 1</option>
+                      </select>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="bidang_iot"> Internet Of Thinks</label>
+                      <select id="bidang_iot" name="bidang_iot" class="form-control select2" style="width: 100%;" 
+                        required>
+                          <option selected="selected" value="" hidden>Masukan tingkat keahlian dosen, pada bidang internet of thinks</option>
+                          <option value="0.125" 
+                            <% if(dosen.bidang_iot == "0.125") { %>
+                            selected
+                            <% } %> >Tingkat 8</option>
+                          <option value="0.250"
+                            <% if(dosen.bidang_iot == "0.250") { %>
+                            selected
+                            <% } %> >Tingkat 7</option>
+                          <option value="0.375" 
+                            <% if(dosen.bidang_iot == "0.375") { %>
+                            selected
+                            <% } %> >Tingkat 6</option>
+                          <option value="0.500" 
+                            <% if(dosen.bidang_iot == "0.500") { %>
+                            selected
+                            <% } %> >Tingkat 5</option>
+                          <option value="0.625"
+                            <% if(dosen.bidang_iot == "0.625") { %>
+                            selected
+                            <% } %> >Tingkat 4</option>
+                          <option value="0.750" 
+                            <% if(dosen.bidang_iot == "0.750") { %>
+                            selected
+                            <% } %> >Tingkat 3</option>
+                          <option value="0.875" 
+                            <% if(dosen.bidang_iot == "0.875") { %>
+                            selected
+                            <% } %> >Tingkat 2</option>
+                          <option value="1" 
+                            <% if(dosen.bidang_iot == "1") { %>
+                            selected
+                            <% } %> >Tingkat 1</option>
+                      </select>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="bidang_desain_aplikasi"> Desain Aplikasi</label>
+                      <select id="bidang_desain_aplikasi" name="bidang_desain_aplikasi" class="form-control select2" style="width: 100%;" 
+                        required>
+                          <option selected="selected" value="" hidden>Masukan tingkat keahlian dosen, pada bidang desain aplikasi</option>
+                          <option value="0.125" 
+                            <% if(dosen.bidang_desain_aplikasi == "0.125") { %>
+                            selected
+                            <% } %> >Tingkat 8</option>
+                          <option value="0.250"
+                            <% if(dosen.bidang_desain_aplikasi == "0.250") { %>
+                            selected
+                            <% } %> >Tingkat 7</option>
+                          <option value="0.375" 
+                            <% if(dosen.bidang_desain_aplikasi == "0.375") { %>
+                            selected
+                            <% } %> >Tingkat 6</option>
+                          <option value="0.500" 
+                            <% if(dosen.bidang_desain_aplikasi == "0.500") { %>
+                            selected
+                            <% } %> >Tingkat 5</option>
+                          <option value="0.625"
+                            <% if(dosen.bidang_desain_aplikasi == "0.625") { %>
+                            selected
+                            <% } %> >Tingkat 4</option>
+                          <option value="0.750" 
+                            <% if(dosen.bidang_desain_aplikasi == "0.750") { %>
+                            selected
+                            <% } %> >Tingkat 3</option>
+                          <option value="0.875" 
+                            <% if(dosen.bidang_desain_aplikasi == "0.875") { %>
+                            selected
+                            <% } %> >Tingkat 2</option>
+                          <option value="1" 
+                            <% if(dosen.bidang_desain_aplikasi == "1") { %>
+                            selected
+                            <% } %> >Tingkat 1</option>
+                      </select>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="bidang_jaringan_komputer"> Jaringan Komputer</label>
+                      <select id="bidang_jaringan_komputer" name="bidang_jaringan_komputer" class="form-control select2" style="width: 100%;" 
+                        required>
+                          <option selected="selected" value="" hidden>Masukan tingkat keahlian dosen, pada bidang jaringan komputer</option>
+                          <option value="0.125" 
+                            <% if(dosen.bidang_jaringan_komputer == "0.125") { %>
+                            selected
+                            <% } %> >Tingkat 8</option>
+                          <option value="0.250"
+                            <% if(dosen.bidang_jaringan_komputer == "0.250") { %>
+                            selected
+                            <% } %> >Tingkat 7</option>
+                          <option value="0.375" 
+                            <% if(dosen.bidang_jaringan_komputer == "0.375") { %>
+                            selected
+                            <% } %> >Tingkat 6</option>
+                          <option value="0.500" 
+                            <% if(dosen.bidang_jaringan_komputer == "0.500") { %>
+                            selected
+                            <% } %> >Tingkat 5</option>
+                          <option value="0.625"
+                            <% if(dosen.bidang_jaringan_komputer == "0.625") { %>
+                            selected
+                            <% } %> >Tingkat 4</option>
+                          <option value="0.750" 
+                            <% if(dosen.bidang_jaringan_komputer == "0.750") { %>
+                            selected
+                            <% } %> >Tingkat 3</option>
+                          <option value="0.875" 
+                            <% if(dosen.bidang_jaringan_komputer == "0.875") { %>
+                            selected
+                            <% } %> >Tingkat 2</option>
+                          <option value="1" 
+                            <% if(dosen.bidang_jaringan_komputer == "1") { %>
+                            selected
+                            <% } %> >Tingkat 1</option>
+                      </select>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="bidang_basis_data"> Basis Data</label>
+                      <select id="bidang_basis_data" name="bidang_basis_data" class="form-control select2" style="width: 100%;" 
+                        required>
+                          <option selected="selected" value="" hidden>Masukan tingkat keahlian dosen, pada bidang basis data</option>
+                          <option value="0.125" 
+                            <% if(dosen.bidang_basis_data == "0.125") { %>
+                            selected
+                            <% } %> >Tingkat 8</option>
+                          <option value="0.250"
+                            <% if(dosen.bidang_basis_data == "0.250") { %>
+                            selected
+                            <% } %> >Tingkat 7</option>
+                          <option value="0.375" 
+                            <% if(dosen.bidang_basis_data == "0.375") { %>
+                            selected
+                            <% } %> >Tingkat 6</option>
+                          <option value="0.500" 
+                            <% if(dosen.bidang_basis_data == "0.500") { %>
+                            selected
+                            <% } %> >Tingkat 5</option>
+                          <option value="0.625"
+                            <% if(dosen.bidang_basis_data == "0.625") { %>
+                            selected
+                            <% } %> >Tingkat 4</option>
+                          <option value="0.750" 
+                            <% if(dosen.bidang_basis_data == "0.750") { %>
+                            selected
+                            <% } %> >Tingkat 3</option>
+                          <option value="0.875" 
+                            <% if(dosen.bidang_basis_data == "0.875") { %>
+                            selected
+                            <% } %> >Tingkat 2</option>
+                          <option value="1" 
+                            <% if(dosen.bidang_basis_data == "1") { %>
+                            selected
+                            <% } %> >Tingkat 1</option>
+                      </select>
+                    </div>
+                  <!-- /.card-body -->
+  
+                  <div class="card-footer">
+                    <a href="/dosen" class="btn btn-default">Kembali</a>
+                    <button type="submit" class="btn btn-primary float-right">Simpan</button>
+                  </div>
+                </form>
+              </div>
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+<%- include ../../partials/footer.ejs %>
+<%- include ../../partials/js.ejs %>
