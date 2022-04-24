@@ -102,4 +102,34 @@ module.exports={
     }
   },
 
+  actionEdit : async(req, res)=>{
+    try {
+      const { id } = req.params
+
+      const { nidn, nama, gelar, email, no_wa, 
+        pendidikan, fungsional, jumlah, bidang_aplikasi_desktop,
+        bidang_aplikasi_web, bidang_aplikasi_mobile, bidang_data_mining,
+        bidang_iot, bidang_desain_aplikasi, bidang_jaringan_komputer, 
+        bidang_basis_data } = req.body
+
+      await Dosen.findOneAndUpdate({
+        _id: id
+      },{ nidn, nama, gelar, email, no_wa, 
+        pendidikan, fungsional, jumlah, bidang_aplikasi_desktop,
+        bidang_aplikasi_web, bidang_aplikasi_mobile, bidang_data_mining,
+        bidang_iot, bidang_desain_aplikasi, bidang_jaringan_komputer, 
+        bidang_basis_data })
+
+      req.flash('alertMessage', "Berhasil ubah data dosen pembimbing")
+      req.flash('alertStatus', "success")
+
+      res.redirect('/dosen')
+      
+    } catch (err) {
+      req.flash('alertMessage', `${err.message}`)
+      req.flash('alertStatus', 'danger')
+      res.redirect('/dosen')
+    }
+  },
+
 }
