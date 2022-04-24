@@ -21,7 +21,9 @@ let dosenSchema = mongoose.Schema({
   },
   no_wa: {
     type: String,
-    require: [true, 'No whatsapp dosen harus diiisi']
+    require: [true, 'No whatsapp dosen harus diiisi'],
+    maxlength :[13, "panjang nomor whatsapp harus antara 9 - 13 karakter"],
+    minlength :[9, "panjang nomor whatsapp harus antara 9 - 13 karakter"]
   },
   status: {
     type: String,
