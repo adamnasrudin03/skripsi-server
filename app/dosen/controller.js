@@ -71,7 +71,7 @@ module.exports={
         _id: id
       }, { status })
 
-      req.flash('alertMessage', "Berhasil ubah status")
+      req.flash('alertMessage', "Berhasil ubah status dosen")
       req.flash('alertStatus', "success")
 
       res.redirect('/dosen')
