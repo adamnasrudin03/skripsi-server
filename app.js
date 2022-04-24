@@ -14,6 +14,7 @@ var dosenRouter = require('./app/dosen/router');
 var mahasiswaRouter = require('./app/mahasiswa/router');
 
 var apiAjaranRouter = require('./app/ajaran/apiRouter');
+var apiMahasiswaRouter = require('./app/mahasiswa/apiRouter');
 
 var app = express();
 const URL = `/api/v1`
@@ -47,6 +48,7 @@ app.use('/mahasiswa', mahasiswaRouter);
 
 // api
 app.use(`${URL}/ajaran-years`, apiAjaranRouter);
+app.use(`${URL}/pengajuan-skripsi`, apiMahasiswaRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
