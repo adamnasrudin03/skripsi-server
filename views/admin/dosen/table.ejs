@@ -51,9 +51,9 @@
           </td>
           <td>
             <form action="/dosen/status/<%= dosen[i]._id %>?_method=PUT" method="post" style="display: inline-block;">
-              <button class="btn btn-primary btn-sm">
+              <button class="btn btn-primary btn-sm" title="Hidupkan / Matikan">
                 <% if(dosen[i].status === 'Y') { %>
-                  <i class="fas fa-user-slash"></i>
+                  <i class="fas fa-user-minus"></i>
                     Matikan
                 <% } else { %>
                   <i class="fas fa-user-check"></i>
