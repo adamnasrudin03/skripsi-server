@@ -1,0 +1,94 @@
+<table id="example2" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+      <th>No</th>
+      <th>NPM</th>
+      <th>Nama</th>
+      <th>Email</th>
+      <th>No Wa</th>
+      <th>Judul Skripsi</th>
+      <th>Tema Skripsi</th>
+      <th>Dosen Pembimbing</th>
+      <th>Status</th>
+      <th>Aksi</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% for(let i = 0; i < mahasiswa.length; i++){ %>
+        <tr>
+          <td><%= i + 1 %></td>
+          <td><%= mahasiswa[i].npm %> </td>
+          <td><%= mahasiswa[i].nama %> </td>
+          <td><%= mahasiswa[i].email %> </td>
+          <td><%= mahasiswa[i].no_wa %> </td>
+          <td>
+            <% mahasiswa[i].judul_skripsi %>
+          </td>
+          <td>
+            <% if(mahasiswa[i].tema_skripsi === 'bidang_aplikasi_desktop') { %>
+              Aplikasi Dekstop
+            <% } else if(mahasiswa[i].tema_skripsi === 'bidang_aplikasi_web') { %>
+              Aplikasi Web
+            <% } else if(mahasiswa[i].tema_skripsi === 'bidang_aplikasi_mobile') { %>
+              Aplikasi Mobile
+            <% } else if(mahasiswa[i].tema_skripsi === 'bidang_data_mining') { %>
+              Data Mining
+            <% } else if(mahasiswa[i].tema_skripsi === 'bidang_iot') { %>
+              Internet Of Thinks
+            <% } else if(mahasiswa[i].tema_skripsi === 'bidang_desain_aplikasi') { %>
+              Desain Aplikasi
+            <% } else if(mahasiswa[i].tema_skripsi === 'bidang_jaringan_komputer') { %>
+              Jaringan Komputer
+            <% } else if(mahasiswa[i].tema_skripsi === 'bidang_basis_data') { %>
+              Basis Data
+            <% }  %>
+          </td>
+          <td>
+            <%= mahasiswa[i]?.dosen?.nama ?? '-' %>
+            <%= mahasiswa[i].dosen.gelar ? ', ' mahasiswa[i].dosen.gelar : ' ' %>
+          </td>
+          <td>
+            <% if(mahasiswa[i].status === 'pending') { %>
+              <span class="badge badge-warning">
+                Menunggu Persetujuan
+              </span>
+            <% } else if(mahasiswa[i].status === 'rejected') { %>
+              <span class="badge badge-danger">
+                Ditolak
+              </span>
+            <% } else if(mahasiswa[i].status === 'accepted') { %>
+              <span class="badge badge-success">
+                Diterima
+              </span>
+            <% } %>
+          </td>
+          <td>
+            <% if(mahasiswa[i].status === 'pending') { %>
+              <form action="/mahasiswa/rejected/<%= mahasiswa[i]._id %>?_method=PUT" method="post" style="display: inline-block;">
+                <button class="btn btn-primary btn-sm" title="Tolak">
+                  <i class="fas fa-user-minus"></i>
+                    Tolak
+                </button>
+              </form>
+              
+              <form action="/mahasiswa/accepted/<%= mahasiswa[i]._id %>?_method=PUT" method="post" style="display: inline-block;">
+                <button class="btn btn-primary btn-sm" title="Terima">
+                  <i class="fas fa-user-check"></i>
+                    Terima
+                </button>
+              </form>
+            <% } 
+
+            <% if(mahasiswa[i].status === 'accepted') { %>
+              <a href="/mahasiswa/edit/<%= mahasiswa[i]._id %>" class="btn btn-info btn-sm"  title="Ubah">
+                <i class="fas fa-pencil-alt"></i>
+                Ubah
+              </a>
+            <% } 
+          </td>
+        </tr>
+      <% } %>
+
+    </tbody>
+    </tfoot>
+  </table>

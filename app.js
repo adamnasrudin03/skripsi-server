@@ -11,6 +11,7 @@ var dashboardRouter = require('./app/dashboard/router');
 var ajaranRouter = require('./app/ajaran/router');
 var profileRouter = require('./app/profile/router');
 var dosenRouter = require('./app/dosen/router');
+var mahasiswaRouter = require('./app/mahasiswa/router');
 
 var apiAjaranRouter = require('./app/ajaran/apiRouter');
 
@@ -42,6 +43,7 @@ app.use('/profile', profileRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/ajaran', ajaranRouter);
 app.use('/dosen', dosenRouter);
+app.use('/mahasiswa', mahasiswaRouter);
 
 // api
 app.use(`${URL}/ajaran-years`, apiAjaranRouter);
