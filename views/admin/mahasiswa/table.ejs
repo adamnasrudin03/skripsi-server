@@ -46,7 +46,7 @@
           <td>
             <%= mahasiswa[i]?.dosen?.nama ?? '-' %>
             
-            <% if(mahasiswa[i].dosen.gelar) { %>
+            <% if(mahasiswa[i]?.dosen?.gelar) { %>
               , <%= mahasiswa[i].dosen.gelar %>
             <% } %>
             
