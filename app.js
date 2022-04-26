@@ -6,6 +6,7 @@ var logger = require('morgan');
 var methodOverride = require('method-override');
 const session = require('express-session');
 const flash = require('connect-flash');
+var cors = require('cors');
 
 var dashboardRouter = require('./app/dashboard/router');
 var ajaranRouter = require('./app/ajaran/router');
@@ -17,7 +18,8 @@ var apiAjaranRouter = require('./app/ajaran/apiRouter');
 var apiMahasiswaRouter = require('./app/mahasiswa/apiRouter');
 
 var app = express();
-const URL = `/api/v1`
+const URL = `/api/v1`;
+app.use(cors())
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
