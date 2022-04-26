@@ -102,12 +102,12 @@ module.exports={
       const mahasiswa = await Mahasiswa.find({ajaran_id: id}).count()
       if (mahasiswa > 0) {
         req.flash('alertMessage', "Data tidak dapat dihapus, karena relasi dengan data lain.")
-        req.flash('alertStatus', "error")
+        req.flash('alertStatus', "danger")
   
         res.redirect('/ajaran')
         return
       }
-      
+
       await Ajaran.findOneAndRemove({
         _id: id
       });
