@@ -1,4 +1,5 @@
 const Ajaran = require('./model')
+const Mahasiswa = require('./../mahasiswa/model')
 
 module.exports={
   index: async(req, res)=>{
@@ -98,6 +99,15 @@ module.exports={
     try {
       const { id } = req.params;
 
+      const mahasiswa = await Mahasiswa.find({ajaran_id: id}).count()
+      if (mahasiswa > 0) {
+        req.flash('alertMessage', "Data tidak dapat dihapus, karena relasi dengan data lain.")
+        req.flash('alertStatus', "error")
+  
+        res.redirect('/ajaran')
+        return
+      }
+      
       await Ajaran.findOneAndRemove({
         _id: id
       });
