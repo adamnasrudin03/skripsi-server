@@ -23,6 +23,26 @@ module.exports={
       res.redirect('/mahasiswa')
     }
   },
+  
+  actionStatusReject: async (req, res) => {
+    try {
+      const { id } = req.params
+      await Mahasiswa.findOneAndUpdate({
+        _id: id
+      }, { status: 'rejected' })
+
+      req.flash('alertMessage', "Berhasil ubah status pengajuan skripsi")
+      req.flash('alertStatus', "success")
+
+      res.redirect('/mahasiswa')
+
+
+    } catch (err) {
+      req.flash('alertMessage', `${err.message}`)
+      req.flash('alertStatus', 'danger')
+      res.redirect('/mahasiswa')
+    }
+  },
 
   apiActionCreate : async(req, res)=>{
     try {
