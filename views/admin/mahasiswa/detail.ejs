@@ -1,0 +1,256 @@
+<%- include ../../partials/header.ejs %>
+<%- include ../../partials/navbar.ejs %>
+<%- include ../../partials/sidebar.ejs %>
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <!-- <h1</h1> -->
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/">Beranda</a></li>
+              <li class="breadcrumb-item"><a href="/mahasiswa">Proposal Skripsi</a></li>
+              <li class="breadcrumb-item active">Detail</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+            
+          <div class="col-12  d-flex align-items-stretch flex-column">
+            <div class="card bg-light d-flex flex-fill">
+                
+              <div class="card-body pt-2">
+                <h3>Detail Proposal Skripsi</h3>
+                <hr/>
+                <form class="form-horizontal">
+
+                  <div class="form-group row">
+                    <label for="spanstatus" class="col-sm-2 col-form-label">Status Pengajuan</label>
+                    <div class="col-sm-10">
+                      <span  id="spanstatus" >
+                        :
+                        <% if(mahasiswa.status === 'pending') { %>
+                          <span class="badge badge-warning">
+                            Menunggu Persetujuan
+                          </span>
+                        <% } else if(mahasiswa.status === 'rejected') { %>
+                          <span class="badge badge-danger">
+                            Ditolak
+                          </span>
+                        <% } else if(mahasiswa.status === 'accepted') { %>
+                          <span class="badge badge-success">
+                            Diterima
+                          </span>
+                        <% } %>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="spanajaran" class="col-sm-2 col-form-label">Tahun Ajaran</label>
+                    <div class="col-sm-10">
+                      <span  id="spanajaran" >
+                        : <%= mahasiswa?.ajaran?.start_year ?? '' %> - <%= mahasiswa?.ajaran?.end_year ?? ''%> 
+                        
+                          <% if(mahasiswa?.ajaran?.semester) { %>
+                            ( <%= mahasiswa.ajaran.semester %> )
+                          <% } %>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="spannama" class="col-sm-2 col-form-label">Nama</label>
+                    <div class="col-sm-10">
+                      <span  id="spannama" >
+                        : <%= mahasiswa.nama %>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="spannpm" class="col-sm-2 col-form-label">NPM</label>
+                    <div class="col-sm-10">
+                      <span  id="spannpm" >
+                        : <%= mahasiswa.npm %>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="spansemester" class="col-sm-2 col-form-label">Semester</label>
+                    <div class="col-sm-10">
+                      <span  id="spansemester" >
+                        : <%= mahasiswa.semester %>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="spanemail" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                      <span  id="spanemail" >
+                        : <%= mahasiswa.email %>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="spanno_wa" class="col-sm-2 col-form-label">No WhatsApp</label>
+                    <div class="col-sm-10">
+                      <span  id="spanno_wa" >
+                        : <%= mahasiswa.no_wa %>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="spanjudul_skripsi" class="col-sm-2 col-form-label">Judul Skripsi</label>
+                    <div class="col-sm-10">
+                      <span  id="spanjudul_skripsi" >
+                        : <%= mahasiswa.judul_skripsi %>
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group row">
+                    <label for="spantema_skripsi" class="col-sm-2 col-form-label">Tema Skripsi</label>
+                    <div class="col-sm-10">
+                      <span  id="spantema_skripsi" >
+                        : 
+                        <% if(mahasiswa.tema_skripsi === 'bidang_aplikasi_desktop') { %>
+                          Aplikasi Dekstop
+                        <% } else if(mahasiswa.tema_skripsi === 'bidang_aplikasi_web') { %>
+                          Aplikasi Web
+                        <% } else if(mahasiswa.tema_skripsi === 'bidang_aplikasi_mobile') { %>
+                          Aplikasi Mobile
+                        <% } else if(mahasiswa.tema_skripsi === 'bidang_data_mining') { %>
+                          Data Mining
+                        <% } else if(mahasiswa.tema_skripsi === 'bidang_iot') { %>
+                          Internet Of Thinks
+                        <% } else if(mahasiswa.tema_skripsi === 'bidang_desain_aplikasi') { %>
+                          Desain Aplikasi
+                        <% } else if(mahasiswa.tema_skripsi === 'bidang_jaringan_komputer') { %>
+                          Jaringan Komputer
+                        <% } else if(mahasiswa.tema_skripsi === 'bidang_basis_data') { %>
+                          Basis Data
+                        <% }  %>
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group row">
+                    <label for="spandosen_sebelum" class="col-sm-2 col-form-label">Dosen Pembimbing Sebelumnya </label>
+                    <div class="col-sm-10">
+                      <span  id="spandosen_sebelum" >
+                        : <%= mahasiswa.dosen_sebelum %>
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group row">
+                    <label for="spanRole" class="col-sm-2 col-form-label">Dosen Pembimbing Saat Ini  </label>
+                    <div class="col-sm-10">
+                      <span  id="spanRole" >
+                        : <%= mahasiswa?.dosen?.nama ?? '-' %>
+                        
+                        <% if(mahasiswa?.dosen?.gelar) { %>
+                          , <%= mahasiswa.dosen.gelar %>
+                        <% } %>
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group row">
+                    <label for="spanfile_proposal" class="col-sm-2 col-form-label">File Proposal</label>
+                    <div class="col-sm-10">
+                      <span  id="spanfile_proposal" >
+                        : 
+                        <% if(mahasiswa?.file_proposal) { %>
+                          <a target="_blank" href="/uploads/proposal/<%= mahasiswa.file_proposal %> " class="btn btn-sm btn-primary">
+                            Lihat Disini
+                          </a>
+                        <% } %>
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group row">
+                    <label for="spanfile_rekap_nilai" class="col-sm-2 col-form-label">File Rekap Nilai</label>
+                    <div class="col-sm-10">
+                      <span  id="spanfile_rekap_nilai" >
+                        : 
+                        <% if(mahasiswa?.file_rekap_nilai) { %>
+                          <a target="_blank" href="/uploads/rekap/<%= mahasiswa.file_rekap_nilai %> " class="btn btn-sm btn-primary">
+                            Lihat Disini
+                          </a>
+                        <% } %>
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group row">
+                    <label for="spanmata_kuliah_lain" class="col-sm-2 col-form-label">Mata Kuliah Lain</label>
+                    <div class="col-sm-10">
+                      <span  id="spanmata_kuliah_lain" >
+                        : <%= mahasiswa.mata_kuliah_lain %>
+                      </span>
+                    </div>
+                  </div>
+
+                </form>
+              </div>
+              <div class="card-footer">
+                
+                <div class="text-right">
+                  <a href="/mahasiswa" class=" text-left btn btn-sm  btn-default" style="margin: 10px;" >
+                    Kembali
+                  </a>
+                  
+                  <a href="/mahasiswa/edit/<%= mahasiswa._id %>" class="btn btn-sm btn-primary" style="margin: 10px;">
+                    <i class="fas fa-pencil-alt"></i> Ubah
+                  </a>
+                  
+                  <% if(mahasiswa.status === 'pending') { %>
+                    <form action="/mahasiswa/rejected/<%= mahasiswa._id %>?_method=PUT" method="post" 
+                      style="display: inline-block; margin: 10px;">
+                      <button class="btn btn-danger btn-sm" title="Tolak">
+                        <i class="fas fa-minus-circle"></i>
+                          Tolak
+                      </button>
+                    </form>
+                    
+                    <form action="/mahasiswa/accepted/<%= mahasiswa._id %>?_method=PUT" method="post" 
+                      style="display: inline-block; margin: 10px;">
+                      <button class="btn btn-info btn-sm" title="Terima">
+                        <i class="fas fa-check-circle"></i>
+                          Terima
+                      </button>
+                    </form>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+          </div>
+              
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+<%- include ../../partials/footer.ejs %>
+<%- include ../../partials/js.ejs %>
