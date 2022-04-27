@@ -8,6 +8,7 @@
       <th>No Wa</th>
       <th>Judul Skripsi</th>
       <th>Tema Skripsi</th>
+      <th>Dosen Pembimbing Sebelumnya</th>
       <th>Dosen Pembimbing</th>
       <th>Status</th>
       <th>Aksi</th>
@@ -42,6 +43,9 @@
             <% } else if(mahasiswa[i].tema_skripsi === 'bidang_basis_data') { %>
               Basis Data
             <% }  %>
+          </td>
+          <td>
+            <%= mahasiswa[i]?.dosen_sebelum?? '-' %>
           </td>
           <td>
             <%= mahasiswa[i]?.dosen?.nama ?? '-' %>
