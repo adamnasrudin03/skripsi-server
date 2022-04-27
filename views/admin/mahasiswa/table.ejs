@@ -2,12 +2,11 @@
     <thead>
     <tr>
       <th>No</th>
+      <th>Tahun Ajaran</th>
       <th>NPM</th>
       <th>Nama</th>
-      <th>No WhatsApp</th>
       <th>Judul Skripsi</th>
       <th>Tema Skripsi</th>
-      <th>Dosen Pembimbing Sebelumnya</th>
       <th>Dosen Pembimbing</th>
       <th>Status</th>
       <th>Aksi</th>
@@ -17,9 +16,15 @@
       <% for(let i = 0; i < mahasiswa.length; i++){ %>
         <tr>
           <td><%= i + 1 %></td>
+          <td>
+              <%= mahasiswa[i]?.ajaran?.start_year ?? '' %> - <%= mahasiswa[i]?.ajaran?.end_year ?? ''%> 
+                            
+              <% if(mahasiswa[i]?.ajaran?.semester) { %>
+                ( <%= mahasiswa[i].ajaran.semester %> )
+              <% } %>
+          </td>
           <td><%= mahasiswa[i].npm %> </td>
           <td><%= mahasiswa[i].nama %> </td>
-          <td><%= mahasiswa[i].no_wa %> </td>
           <td>
             <%= mahasiswa[i].judul_skripsi %>
           </td>
@@ -41,9 +46,6 @@
             <% } else if(mahasiswa[i].tema_skripsi === 'bidang_basis_data') { %>
               Basis Data
             <% }  %>
-          </td>
-          <td>
-            <%= mahasiswa[i]?.dosen_sebelum?? '-' %>
           </td>
           <td>
             <%= mahasiswa[i]?.dosen?.nama ?? '-' %>
@@ -70,16 +72,18 @@
           </td>
           <td>
             <% if(mahasiswa[i].status === 'pending') { %>
-              <form action="/mahasiswa/rejected/<%= mahasiswa[i]._id %>?_method=PUT" method="post" style="display: inline-block;">
-                <button class="btn btn-primary btn-sm" title="Tolak">
-                  <i class="fas fa-user-minus"></i>
+              <form action="/mahasiswa/rejected/<%= mahasiswa[i]._id %>?_method=PUT" method="post" 
+                style="display: inline-block; margin: 2px;">
+                <button class="btn btn-danger btn-sm" title="Tolak">
+                  <i class="fas fa-minus"></i>
                     Tolak
                 </button>
               </form>
               
-              <form action="/mahasiswa/accepted/<%= mahasiswa[i]._id %>?_method=PUT" method="post" style="display: inline-block;">
+              <form action="/mahasiswa/accepted/<%= mahasiswa[i]._id %>?_method=PUT" method="post" 
+                style="display: inline-block; margin: 2px;">
                 <button class="btn btn-primary btn-sm" title="Terima">
-                  <i class="fas fa-user-check"></i>
+                  <i class="fas fa-check"></i>
                     Terima
                 </button>
               </form>
