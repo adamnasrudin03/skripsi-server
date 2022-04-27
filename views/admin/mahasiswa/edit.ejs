@@ -97,24 +97,6 @@
                       </div>
 
                       <div class="form-group row">
-                        <label for="spanemail" class="col-sm-2 col-form-label">Email</label>
-                        <div class="col-sm-10">
-                          <span  id="spanemail" >
-                            : <%= mahasiswa.email %>
-                          </span>
-                        </div>
-                      </div>
-
-                      <div class="form-group row">
-                        <label for="spanno_wa" class="col-sm-2 col-form-label">No WhatsApp</label>
-                        <div class="col-sm-10">
-                          <span  id="spanno_wa" >
-                            : <%= mahasiswa.no_wa %>
-                          </span>
-                        </div>
-                      </div>
-
-                      <div class="form-group row">
                         <label for="spanjudul_skripsi" class="col-sm-2 col-form-label">Judul Skripsi</label>
                         <div class="col-sm-10">
                           <span  id="spanjudul_skripsi" >
@@ -171,62 +153,16 @@
                         </div>
                       </div>
                       
-                      <div class="form-group row">
-                        <label for="spanfile_proposal" class="col-sm-2 col-form-label">File Proposal</label>
-                        <div class="col-sm-10">
-                          <span  id="spanfile_proposal" >
-                            : 
-                            <% if(mahasiswa?.file_proposal) { %>
-                              <a target="_blank" href="/uploads/proposal/<%= mahasiswa.file_proposal %> " class="btn btn-sm btn-primary">
-                                Lihat Disini
-                              </a>
-                            <% } %>
-                          </span>
-                        </div>
-                      </div>
-                      
-                      <div class="form-group row">
-                        <label for="spanfile_rekap_nilai" class="col-sm-2 col-form-label">File Rekap Nilai</label>
-                        <div class="col-sm-10">
-                          <span  id="spanfile_rekap_nilai" >
-                            : 
-                            <% if(mahasiswa?.file_rekap_nilai) { %>
-                              <a target="_blank" href="/uploads/rekap/<%= mahasiswa.file_rekap_nilai %> " class="btn btn-sm btn-primary">
-                                Lihat Disini
-                              </a>
-                            <% } %>
-                          </span>
-                        </div>
-                      </div>
-                      
-                      <div class="form-group row">
-                        <label for="spanmata_kuliah_lain" class="col-sm-2 col-form-label">Mata Kuliah Lain</label>
-                        <div class="col-sm-10">
-                          <span  id="spanmata_kuliah_lain" >
-                            : <%= mahasiswa.mata_kuliah_lain %>
-                          </span>
-                        </div>
-                      </div>
-
                     </form>
                   </div>
-                  <div class="card-footer">
-                    <div class="text-right">
-                      <a href="#" class="btn btn-sm bg-teal">
-                        <i class="fas fa-comments"></i>
-                      </a>
-                      <a href="#" class="btn btn-sm btn-primary">
-                        <i class="fas fa-user"></i> View Profile
-                      </a>
-                    </div>
-                  </div>
+                
                 </div>
               </div>
               
           <div class="col-12">
             <div class="card card-primary">
                 <div class="card-header">
-                  <h3 class="card-title">Form Ubah Proposal Skripsi</h3>
+                  <h3 class="card-title">Formulir Perubahan</h3>
                 </div>
                 
                 <!-- /.card-header -->
@@ -268,7 +204,7 @@
                   <!-- /.card-body -->
   
                   <div class="card-footer">
-                    <a href="/mahasiswa" class="btn btn-default">Kembali</a>
+                    <a href="/mahasiswa/detail/<%= mahasiswa._id %>" class="btn btn-default">Kembali</a>
                     <button type="submit" class="btn btn-primary float-right">Simpan</button>
                   </div>
                 </form>
