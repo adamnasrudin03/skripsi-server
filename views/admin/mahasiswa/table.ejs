@@ -75,24 +75,23 @@
               <form action="/mahasiswa/rejected/<%= mahasiswa[i]._id %>?_method=PUT" method="post" 
                 style="display: inline-block; margin: 2px;">
                 <button class="btn btn-danger btn-sm" title="Tolak">
-                  <i class="fas fa-minus"></i>
+                  <i class="fas fa-minus-circle"></i>
                     Tolak
                 </button>
               </form>
               
               <form action="/mahasiswa/accepted/<%= mahasiswa[i]._id %>?_method=PUT" method="post" 
                 style="display: inline-block; margin: 2px;">
-                <button class="btn btn-primary btn-sm" title="Terima">
-                  <i class="fas fa-check"></i>
+                <button class="btn btn-info btn-sm" title="Terima">
+                  <i class="fas fa-check-circle"></i>
                     Terima
                 </button>
               </form>
-            <% } else { %>
-              <a href="/mahasiswa/edit/<%= mahasiswa[i]._id %>" class="btn btn-info btn-sm"  title="Ubah">
-                <i class="fas fa-pencil-alt"></i>
-                Ubah
-              </a>
             <% } %>
+              <a href="/mahasiswa/detail/<%= mahasiswa[i]._id %>" class="btn btn-primary btn-sm"  title="Detail">
+                <i class="fas fa-info-circle"></i>
+                 Detail
+              </a>
           </td>
         </tr>
       <% } %>
