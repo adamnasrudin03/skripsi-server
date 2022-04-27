@@ -1,7 +1,229 @@
 const Mahasiswa = require('./model')
+const Dosen = require('./../dosen/model')
+const nilai = require('./../dosen/nilai');
 const path = require('path')
 const fs = require('fs')
 const config = require('../../config')
+
+async function getMax(dataDosen) {
+  // Simpan data nilai maksimal dari data dosen yang ada sesuai kriteria
+  const maxPendidikan = await Math.max.apply(Math, dataDosen.map(function(o) { 
+    return o.pendidikan; 
+  }));
+
+  const maxFungsional = await Math.max.apply(Math, dataDosen.map(function(o) { 
+    return o.fungsional; 
+  }));
+
+  const maxJumlah = await Math.max.apply(Math, dataDosen.map(function(o) { 
+    return o.jumlah; 
+  }));
+
+  const maxAppDesktop = await Math.max.apply(Math, dataDosen.map(function(o) { 
+    return o.bidang_aplikasi_desktop; 
+  }));
+
+  const maxAppWeb = await Math.max.apply(Math, dataDosen.map(function(o) { 
+    return o.bidang_aplikasi_web; 
+  }));
+
+  const maxAppMobile = await Math.max.apply(Math, dataDosen.map(function(o) { 
+    return o.bidang_aplikasi_mobile; 
+  }));
+
+  const maxDataMining = await Math.max.apply(Math, dataDosen.map(function(o) { 
+    return o.bidang_data_mining; 
+  }));
+
+  const maxIOT = await Math.max.apply(Math, dataDosen.map(function(o) { 
+    return o.bidang_iot; 
+  }));
+
+  const maxDesainApp = await Math.max.apply(Math, dataDosen.map(function(o) { 
+    return o.bidang_desain_aplikasi; 
+  }));
+
+  const maxJarKom = await Math.max.apply(Math, dataDosen.map(function(o) { 
+    return o.bidang_jaringan_komputer; 
+  }));
+
+  const maxBasisData = await Math.max.apply(Math, dataDosen.map(function(o) { 
+    return o.bidang_basis_data; 
+  }));
+
+  var obj = {
+    pendidikan:  maxPendidikan,
+    fungsional: maxFungsional,
+    jumlah: maxJumlah,
+    bidangAplikasiDesktop: maxAppDesktop,
+    bidanAplikasiWeb: maxAppWeb,
+    bidangAplikasiMobile: maxAppMobile,
+    bidangDataMining: maxDataMining,
+    bidangIOT: maxIOT,
+    bidangDesainAplikasi: maxDesainApp,
+    bidangJarKom: maxJarKom,
+    bidangBasisData: maxBasisData,
+  };
+  
+  // Return it
+  return obj;
+}
+
+async function validasiJumlah(dataDosen, mahasiswa) {
+  let temp = [];
+
+  // validasi jumlah bimbingan
+  for (let i = 0; i < dataDosen.length; i++) {
+    const kuotaDosen = await Mahasiswa.find({ 
+      dosen: dataDosen[i]._id,
+      ajaran: mahasiswa.ajaran 
+      }).count()
+
+    let max = 0;
+    if (dataDosen[i].jumlah === nilai.jumlah.sangatBanyak) {
+      max = 25;
+    }
+    if (dataDosen[i].jumlah === nilai.jumlah.banyak) {
+      max = 20;
+    }
+    if (dataDosen[i].jumlah === nilai.jumlah.cukup) {
+      max = 15;
+    }
+    if (dataDosen[i].jumlah === nilai.jumlah.kurang) {
+      max = 10;
+    }
+    if (dataDosen[i].jumlah === nilai.jumlah.sangatKurang) {
+      max = 5;
+    }
+
+    // simpan data dosen yang memenuhi kriteria jumlah bimbingan
+    // kedalam data array baru
+    if( kuotaDosen < max) {
+      temp.push(dataDosen[i]);
+    }
+
+  }
+  // Return it
+  return temp;
+}
+
+function normalisasi(dataDosen, nilaiMax, mahasiswa) {
+  let temp = [];
+ 
+  // Proses Normalisasi Nilai
+  for (let j = 0; j < dataDosen.length; j++) {
+    // Normalisasi kriteria pendidikan
+    let c1 = {
+      nilai: dataDosen[j].pendidikan / nilaiMax.pendidikan
+    }
+
+    // Normalisasi kriteria fungsional
+    let c2 = {
+      nilai: dataDosen[j].fungsional / nilaiMax.fungsional
+    }
+
+    // Normalisasi kriteria Kompetensi / tema
+    let c3 = {
+      nilai: 0
+    }
+
+    switch (mahasiswa.tema_skripsi) {
+      case 'bidang_aplikasi_desktop':
+        c3.nilai =  dataDosen[j].bidang_aplikasi_desktop / nilaiMax.bidangAplikasiDesktop;
+        break;
+    
+      case 'bidang_aplikasi_web':
+        c3.nilai =  dataDosen[j].bidang_aplikasi_web / nilaiMax.bidanAplikasiWeb;
+        break;
+    
+      case 'bidang_aplikasi_mobile':
+        c3.nilai =  dataDosen[j].bidang_aplikasi_mobile / nilaiMax.bidangAplikasiMobile;
+        break;
+    
+      case 'bidang_data_mining':
+        c3.nilai =  dataDosen[j].bidang_data_mining / nilaiMax.bidangDataMining;
+        break;
+    
+      case 'bidang_iot':
+        c3.nilai =  dataDosen[j].bidang_iot / nilaiMax.bidangIOT;
+        break;
+    
+      case 'bidang_desain_aplikasi':
+        c3.nilai =  dataDosen[j].bidang_desain_aplikasi / nilaiMax.bidangDesainAplikasi;
+        break;
+    
+      case 'bidang_jaringan_komputer':
+        c3.nilai =  dataDosen[j].bidang_jaringan_komputer / nilaiMax.bidangJarKom;
+        break;
+    
+      case 'bidang_basis_data':
+        c3.nilai =  dataDosen[j].bidang_basis_data / nilaiMax.bidangBasisData;
+        break;
+      
+      default:
+        c3.nilai =  0;
+        break;
+    }
+
+    // Normalisasi kriteria jumlah
+    let c4 = {
+      nilai: dataDosen[j].jumlah / nilaiMax.jumlah
+    }
+
+    let normalisasi = {
+      id: dataDosen[j]._id,
+      nidn: dataDosen[j].nidn,
+      nama: dataDosen[j].nama,
+      c1: c1,
+      c2: c2,
+      c3: c3,
+      c4: c4
+    }
+
+    temp.push(normalisasi)
+  }
+
+  // Return it
+  return temp;
+}
+
+async function perangkingan(normalisasiDosen) {
+  let temp = [];
+ 
+  // Proses Final Perankingan
+  for (let k = 0; k < normalisasiDosen.length; k++) {
+    let a = (nilaiKriteria.c1 * normalisasiDosen[k].c1) + (nilaiKriteria.c2 * normalisasiDosen[k].c2);
+    let b = (nilaiKriteria.c3 * normalisasiDosen[k].c3) + (nilaiKriteria.c4 * normalisasiDosen[k].c4) ;
+
+    let v = {
+      nilai: a + b
+    };
+
+    let perangkingan = {
+      id: normalisasiDosen[k]._id,
+      nidn: normalisasiDosen[k].nidn,
+      nama: normalisasiDosen[k].nama,
+      nilai: v.nilai
+    };
+
+    temp.push(perangkingan);
+    
+  }
+  
+  temp.sort(function (a, b) {
+    return b.nilai - a.nilai;
+  });
+
+  // Return it
+  return temp;
+}
+
+const nilaiKriteria = {
+  c1: 0.25,
+  c2: 0.50,
+  c3: 1,
+  c4: 0.75
+}
 
 module.exports={
   index: async(req, res)=>{
@@ -80,6 +302,45 @@ module.exports={
         title: 'Detail Pengajuan Peoposal'
       })
       
+    } catch (err) {
+      req.flash('alertMessage', `${err.message}`)
+      req.flash('alertStatus', 'danger')
+      res.redirect('/mahasiswa')
+    }
+  },
+
+  actionStatusAccepted: async (req, res) => {
+    try {
+      const { id } = req.params
+
+      const mahasiswa = await Mahasiswa.findOne({_id : id}).populate({
+        'path':'ajaran',
+        'model':'Ajaran'
+      })
+     
+      const dosen = await Dosen.find({status: "Y"})
+
+      const dosenByJumlah = await validasiJumlah(dosen, mahasiswa);
+
+      // Menyimpan data nilai kriteria maksimal
+      // dari data dosen yang memenuhi jumlah bimbingan
+      const nilaiMax = await getMax(dosenByJumlah);
+
+      // Proses Normalisasi
+      const normalisasiDosen = await normalisasi(dosenByJumlah, nilaiMax, mahasiswa);
+
+      // Proses Rangking Dosen
+      const finalRangkingDosen = await perangkingan(normalisasiDosen);
+
+      await Mahasiswa.findOneAndUpdate({
+        _id: id
+      }, { status: 'accepted' , dosen: finalRangkingDosen[0] })
+
+      req.flash('alertMessage', "Berhasil menyetujui pengajuan skripsi")
+      req.flash('alertStatus', "success")
+
+      res.redirect('/mahasiswa')
+
     } catch (err) {
       req.flash('alertMessage', `${err.message}`)
       req.flash('alertStatus', 'danger')
