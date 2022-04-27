@@ -10,7 +10,10 @@ module.exports={
       const alertStatus = req.flash("alertStatus")
 
       const alert = { message: alertMessage, status: alertStatus}
-      const mahasiswa = await Mahasiswa.find().sort({ _id: -1 })
+      const mahasiswa = await Mahasiswa.find().sort({ _id: -1 }).populate({
+        'path':'ajaran',
+        'model':'Ajaran'
+     })
 
       res.render('admin/mahasiswa/view_mahasiswa',{
         mahasiswa,
@@ -37,6 +40,26 @@ module.exports={
       res.redirect('/mahasiswa')
 
 
+    } catch (err) {
+      req.flash('alertMessage', `${err.message}`)
+      req.flash('alertStatus', 'danger')
+      res.redirect('/mahasiswa')
+    }
+  },
+
+  viewEdit : async(req, res)=>{
+    try {
+      const { id } = req.params
+      
+      const mahasiswa = await Mahasiswa.findOne({_id : id}).populate({
+        'path':'ajaran',
+        'model':'Ajaran'
+     })
+      res.render('admin/mahasiswa/edit', {
+        mahasiswa,
+        title: 'Detail Pengajuan Peoposal'
+      })
+      
     } catch (err) {
       req.flash('alertMessage', `${err.message}`)
       req.flash('alertStatus', 'danger')
