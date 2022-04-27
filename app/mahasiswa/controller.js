@@ -1,4 +1,7 @@
 const Mahasiswa = require('./model')
+const path = require('path')
+const fs = require('fs')
+const config = require('../../config')
 
 module.exports={
   index: async(req, res)=>{
@@ -33,9 +36,75 @@ module.exports={
       await mahasiswa.save();
 
       res.status(200).json({ message: 'ok', data: mahasiswa })
+
+    } catch (err) {
+      res.status(500).json({ message: err.message || `Internal server error` , data: undefined })
+    }
+  },
+  
+  apiUploadProposal: async (req, res) => {
+    try {
+      if(req.file){
+        let tmp_path= req.file.path;
+        let originaExt = req.file.originalname.split('.')[req.file.originalname.split('.').length - 1];
+        let name = req.file.originalname.split('.');
+        let filename = req.file.filename + '_' +  name[0] + '.' + originaExt;
+        let target_path = path.resolve(config.rootPath, `public/uploads/proposal/${filename}`)
+
+        const src = fs.createReadStream(tmp_path)
+        const dest = fs.createWriteStream(target_path)
+
+        src.pipe(dest)
+
+        src.on('end', async ()=>{
+          try {
+            res.status(200).json({ message: 'ok', data: {
+              uri: filename
+            } })
+            
+          } catch (err) {
+            res.status(500).json({ message: err.message || `Internal server error` , data: undefined })
+          }
+        })
+      } else {
+        res.status(400).json({ message: `Request Payload Tidak Valid` , data: undefined })
+      }
+
     } catch (err) {
       res.status(500).json({ message: err.message || `Internal server error` , data: undefined })
     }
   },
 
+  apiUploadRekap: async (req, res) => {
+    try {
+      if(req.file){
+        let tmp_path= req.file.path;
+        let originaExt = req.file.originalname.split('.')[req.file.originalname.split('.').length - 1];
+        let name = req.file.originalname.split('.');
+        let filename = req.file.filename + '_' +  name[0] + '.' + originaExt;
+        let target_path = path.resolve(config.rootPath, `public/uploads/rekap/${filename}`)
+
+        const src = fs.createReadStream(tmp_path)
+        const dest = fs.createWriteStream(target_path)
+
+        src.pipe(dest)
+
+        src.on('end', async ()=>{
+          try {
+            res.status(200).json({ message: 'ok', data: {
+              uri: filename
+            } })
+            
+          } catch (err) {
+            res.status(500).json({ message: err.message || `Internal server error` , data: undefined })
+          }
+        })
+      } else {
+        res.status(400).json({ message: `Request Payload Tidak Valid` , data: undefined })
+      }
+
+    } catch (err) {
+      res.status(500).json({ message: err.message || `Internal server error` , data: undefined })
+    }
+  },
 }
