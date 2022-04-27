@@ -71,11 +71,11 @@ module.exports={
     try {
       const { npm, nama, semester, email, no_wa, 
         judul_skripsi, tema_skripsi, file_proposal, file_rekap_nilai,
-        mata_kuliah_lain, dosen_sebelum, ajaran_id, lanjutan } = req.body
+        mata_kuliah_lain, dosen_sebelum, ajaran, lanjutan } = req.body
 
       let mahasiswa = await Mahasiswa({ npm, nama, semester, email, no_wa, 
         judul_skripsi, tema_skripsi, file_proposal, file_rekap_nilai,
-        mata_kuliah_lain, dosen_sebelum, ajaran_id, lanjutan })
+        mata_kuliah_lain, dosen_sebelum, ajaran, lanjutan })
       await mahasiswa.save();
 
       res.status(200).json({ message: 'ok', data: mahasiswa })

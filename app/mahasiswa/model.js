@@ -52,12 +52,12 @@ let mahasiswaSchema = mongoose.Schema({
   file_rekap_nilai : {type : String},
   mata_kuliah_lain : {type : String, default: '-'},
   dosen_sebelum : {type : String, default: '-'},
-  ajaran_id : {
+  ajaran : {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Ajaran',
     require: [true, 'Tahun Ajaran skripsi harus diiisi']
   },
-  dosen_id : {
+  dosen : {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Dosen'
   }
