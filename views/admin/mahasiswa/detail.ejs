@@ -239,9 +239,9 @@
                     Kembali
                   </a>
                   
-                  <a href="/mahasiswa/edit/<%= mahasiswa._id %>" class="btn btn-sm btn-primary" style="margin: 10px;">
+                  <button class="btn btn-sm btn-primary" style="margin: 10px;" type="button" data-toggle="modal" data-target="#modal-hapus">
                     <i class="fas fa-pencil-alt"></i> Ubah
-                  </a>
+                  </button>
 
                   <% if(mahasiswa.status === 'pending') { %>
                     <form action="/mahasiswa/rejected/<%= mahasiswa._id %>?_method=PUT" method="post" 
@@ -272,7 +272,61 @@
       <!-- /.container-fluid -->
     </section>
     <!-- /.content -->
+    
 </div>
 
 <%- include ../../partials/footer.ejs %>
 <%- include ../../partials/js.ejs %>
+
+<!-- dialog ubah data -->
+<div class="modal fade" id="modal-hapus">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">Ubah Data Dosen Pembimbing</h4>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form action="/mahasiswa/edit-dosen/<%= mahasiswa._id %>?_method=PUT" method="post">
+        <div class="card-body">
+            
+          <div class="form-group" style="margin-top: -10px;">
+            <label for="rekomenadasi_dosen"> Rekomendasi Dosen Pembimbing</label>
+            <select multiple id="rekomenadasi_dosen" name="dosen_id"
+             class="form-control select2" style="width: 100%; height: 100%;" required>
+                        
+              <% for(let i = 0; i < rekomendasi.length; i++){ %>
+                <option value="<%= rekomendasi[i].id %>">
+                  <%= rekomendasi[i].nama %>
+                  <% if(rekomendasi[i].gelar ) { %>
+                    , <%= rekomendasi[i].gelar %>
+                  <% } %>
+                  nilai : <%= rekomendasi[i].nilai %>
+
+                </option>
+              <% } %>
+            </select>
+          </div>
+        <!-- /.card-body -->
+          <div style="margin-bottom: 30px;"></div>
+          <hr/>
+          <button type="button" class="btn btn-default" data-dismiss="modal">
+            <i class="fas fa-arrow-left"></i>
+            Batal
+          </button>
+          
+          <button type="submit" class="btn btn-primary float-right">
+            <i class="fas fa-save"></i>
+            Simpan
+          </button>
+
+      </form>
+    </div>
+  </div>
+  <!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div>
+        
