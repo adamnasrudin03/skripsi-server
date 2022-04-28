@@ -316,8 +316,24 @@ module.exports={
           'model':'Dosen'
         })
 
+      const dosen = await Dosen.find({status: "Y"});
+
+      // Proses validasi filter jumlah bimbingan
+      const dosenByJumlah = await validasiJumlah(dosen, mahasiswa);
+
+      // Menyimpan data nilai kriteria maksimal
+      // dari data dosen yang memenuhi jumlah bimbingan
+      const nilaiMax = await getMax(dosenByJumlah);
+
+      // Proses Normalisasi
+      const normalisasiDosen = await normalisasi(dosenByJumlah, nilaiMax, mahasiswa);
+
+      // Proses Rangking Dosen
+      const finalRangkingDosen = await perangkingan(normalisasiDosen);
+      console.log(finalRangkingDosen)
       res.render('admin/mahasiswa/detail', {
         mahasiswa,
+        rekomendasi: finalRangkingDosen,
         title: 'Detail Pengajuan Peoposal'
       })
       
