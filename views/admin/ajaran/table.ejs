@@ -16,20 +16,50 @@
           <td><%= ajaran[i].semester %> </td>
           <td><%= ajaran[i].start_at %> s/d <%= ajaran[i].end_at %> </td>
           <td>
-            <form action="/ajaran/delete/<%= ajaran[i]._id %>?_method=DELETE" method="post">
-              <a href="/ajaran/edit/<%= ajaran[i]._id %>" class="btn btn-info btn-sm">
-                <i class="fas fa-pencil-alt"></i>
-                Ubah
-              </a>
-              <button class="btn btn-danger btn-sm" type="submit">
-                <i class="fas fa-trash"></i>
-                Hapus
-              </button>
-            </form>
+            <a href="/ajaran/edit/<%= ajaran[i]._id %>" class="btn btn-info btn-sm">
+              <i class="fas fa-pencil-alt"></i>
+              Ubah
+            </a>
+            <button class="btn btn-danger btn-sm" type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-hapus">
+              <i class="fas fa-trash"></i>
+              Hapus
+            </button>
           </td>
         </tr>
+        <div class="modal fade" id="modal-hapus">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Konfirmasi Hapus Data</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Apakah anda yakin akan menghapus data tersebut ?</p>
+              </div>
+              <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                  <i class="fas fa-arrow-left"></i>
+                  Batal
+                </button>
+                
+                <form action="/ajaran/delete/<%= ajaran[i]._id %>?_method=DELETE" method="post">
+                  <button type="submit" class="btn btn-danger">
+                    <i class="fas fa-trash"></i>
+                    Hapus
+                  </button>
+                </form>
+                
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
       <% } %>
 
     </tbody>
     </tfoot>
   </table>
+  

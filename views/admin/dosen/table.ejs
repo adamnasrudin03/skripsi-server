@@ -50,8 +50,8 @@
             <% } %>
           </td>
           <td>
-            <form action="/dosen/status/<%= dosen[i]._id %>?_method=PUT" method="post" style="display: inline-block;">
-              <button class="btn btn-primary btn-sm" title="Hidupkan / Matikan">
+              <button class="btn btn-primary btn-sm" title="Hidupkan / Matikan"
+                type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-active-inactive">
                 <% if(dosen[i].status === 'Y') { %>
                   <i class="fas fa-user-minus"></i>
                     Matikan
@@ -60,21 +60,99 @@
                     Hidupkan
                 <% } %>
               </button>
-            </form>
 
               <a href="/dosen/edit/<%= dosen[i]._id %>" class="btn btn-info btn-sm"  title="Ubah">
                 <i class="fas fa-pencil-alt"></i>
                 Ubah
               </a>
 
-              <form action="/dosen/delete/<%= dosen[i]._id %>?_method=DELETE" method="post" style="display: inline-block;">
-                <button class="btn btn-danger btn-sm" type="submit" title="Hapus">
-                  <i class="fas fa-trash"></i>
-                  Hapus
-                </button>
-            </form>
+              <button class="btn btn-danger btn-sm" title="Hapus" type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-hapus">
+                <i class="fas fa-trash"></i>
+                Hapus
+              </button>
           </td>
         </tr>
+        
+        <!-- dialog konfirmasi active / inactive -->
+        <div class="modal fade" id="modal-active-inactive">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Konfirmasi</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Apakah anda yakin akan
+                <% if(dosen[i].status === 'Y') { %>
+                    <b>menonaktifkan</b> dosen tersebut ? <br/>
+                    Maka dosen tersebut akan tidak masuk dalam daftar calon dosen pembimbing skripsi.
+                <% } else { %>
+                  <b>mengaktifkan</b> dosen tersebut ? <br/>
+                  Maka dosen tersebut akan masuk dalam daftar calon dosen pembimbing skripsi.
+                <% } %>
+               </p>
+              </div>
+              <div class="modal-footer justify-content-between">
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                  <i class="fas fa-arrow-left"></i>
+                  Batal
+                </button>
+                
+                <form action="/dosen/status/<%= dosen[i]._id %>?_method=PUT" method="post">
+                  <button type="submit" class="btn btn-primary">
+                    <% if(dosen[i].status === 'Y') { %>
+                      <i class="fas fa-user-minus"></i>
+                        Matikan
+                    <% } else { %>
+                      <i class="fas fa-user-check"></i>
+                        Hidupkan
+                    <% } %>
+                  </button>
+                </form>
+                
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+
+        <!-- dialog konfirmasi Delete -->
+        <div class="modal fade" id="modal-hapus">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Konfirmasi Hapus Data</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Apakah anda yakin akan menghapus data tersebut ?</p>
+              </div>
+              <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                  <i class="fas fa-arrow-left"></i>
+                  Batal
+                </button>
+                
+                <form action="/dosen/delete/<%= dosen[i]._id %>?_method=DELETE" method="post">
+                  <button type="submit" class="btn btn-danger">
+                    <i class="fas fa-trash"></i>
+                    Hapus
+                  </button>
+                </form>
+                
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        
       <% } %>
 
     </tbody>
