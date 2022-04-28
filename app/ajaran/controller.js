@@ -99,7 +99,7 @@ module.exports={
     try {
       const { id } = req.params;
 
-      const mahasiswa = await Mahasiswa.find({ajaran_id: id}).count()
+      const mahasiswa = await Mahasiswa.find({ajaran: id}).count()
       if (mahasiswa > 0) {
         req.flash('alertMessage', "Data tidak dapat dihapus, karena relasi dengan data lain.")
         req.flash('alertStatus', "danger")
