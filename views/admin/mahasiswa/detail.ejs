@@ -88,15 +88,6 @@
                   </div>
 
                   <div class="form-group row">
-                    <label for="spansemester" class="col-sm-2 col-form-label">Semester</label>
-                    <div class="col-sm-10">
-                      <span  id="spansemester" >
-                        : <%= mahasiswa.semester %>
-                      </span>
-                    </div>
-                  </div>
-
-                  <div class="form-group row">
                     <label for="spanemail" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
                       <span  id="spanemail" >
@@ -110,6 +101,28 @@
                     <div class="col-sm-10">
                       <span  id="spanno_wa" >
                         : <%= mahasiswa.no_wa %>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="spansemester" class="col-sm-2 col-form-label">Mahasiswa Lanjutan</label>
+                    <div class="col-sm-10">
+                      <span  id="spansemester" >
+                        : <% if(mahasiswa.lanjutan === true ) { %>
+                            Ya
+                          <% } else { %>
+                            Tidak
+                          <% }  %>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="spansemester" class="col-sm-2 col-form-label">Semester</label>
+                    <div class="col-sm-10">
+                      <span  id="spansemester" >
+                        : <%= mahasiswa.semester %>
                       </span>
                     </div>
                   </div>
@@ -182,7 +195,9 @@
                             <i class="fas fa-download"></i>
                             Lihat Disini
                           </a>
-                        <% } %>
+                        <% } else { %>
+                            Tidak Ada
+                        <% }  %>
                       </span>
                     </div>
                   </div>
@@ -198,7 +213,9 @@
                             <i class="fas fa-download"></i>
                             Lihat Disini
                           </a>
-                        <% } %>
+                        <% } else { %>
+                            Tidak Ada
+                        <% }  %>
                       </span>
                     </div>
                   </div>
