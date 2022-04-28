@@ -174,6 +174,7 @@ function normalisasi(dataDosen, nilaiMax, mahasiswa) {
       id: dataDosen[j]._id,
       nidn: dataDosen[j].nidn,
       nama: dataDosen[j].nama,
+      gelar: dataDosen[j].gelar,
       c1: c1,
       c2: c2,
       c3: c3,
@@ -203,6 +204,7 @@ async function perangkingan(normalisasiDosen) {
       id: normalisasiDosen[k].id,
       nidn: normalisasiDosen[k].nidn,
       nama: normalisasiDosen[k].nama,
+      gelar: normalisasiDosen[k].gelar,
       nilai: v.nilai
     };
 
@@ -373,7 +375,7 @@ module.exports={
         mata_kuliah_lain, dosen_sebelum, ajaran, lanjutan } = req.body;
 
       dosen_sebelum = dosen_sebelum ? dosen_sebelum : '-';
-      
+
       let mahasiswa = await Mahasiswa({ npm, nama, semester, email, no_wa, 
         judul_skripsi, tema_skripsi, file_proposal, file_rekap_nilai,
         mata_kuliah_lain, dosen_sebelum, ajaran, lanjutan })
