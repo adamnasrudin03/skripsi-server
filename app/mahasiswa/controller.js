@@ -275,33 +275,7 @@ module.exports={
       res.redirect('/mahasiswa')
     }
   },
-
-  viewEdit : async(req, res)=>{
-    try {
-      const { id } = req.params
-      
-      const mahasiswa = await Mahasiswa.findOne({_id : id})
-        .populate({
-          'path':'ajaran',
-          'model':'Ajaran'
-        })
-        .populate({
-          'path':'dosen',
-          'model':'Dosen'
-        })
-
-      res.render('admin/mahasiswa/edit', {
-        mahasiswa,
-        title: 'Ubah Pengajuan Peoposal'
-      })
-      
-    } catch (err) {
-      req.flash('alertMessage', `${err.message}`)
-      req.flash('alertStatus', 'danger')
-      res.redirect('/mahasiswa')
-    }
-  },
-
+  
   viewDetail : async(req, res)=>{
     try {
       const { id } = req.params
