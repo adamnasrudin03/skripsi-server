@@ -79,7 +79,7 @@ async function validasiJumlah(dataDosen, mahasiswa) {
       ajaran: mahasiswa.ajaran 
       }).count()
 
-    let max = 0;
+    let max = kuotaDosen;
     if (dataDosen[i].jumlah === nilai.jumlah.sangatBanyak) {
       max = 25;
     }
@@ -98,7 +98,7 @@ async function validasiJumlah(dataDosen, mahasiswa) {
 
     // simpan data dosen yang memenuhi kriteria jumlah bimbingan
     // kedalam data array baru
-    if( kuotaDosen < max) {
+    if( kuotaDosen < max || kuotaDosen === 0 ) {
       temp.push(dataDosen[i]);
     }
 
@@ -192,15 +192,15 @@ async function perangkingan(normalisasiDosen) {
  
   // Proses Final Perankingan
   for (let k = 0; k < normalisasiDosen.length; k++) {
-    let a = (nilaiKriteria.c1 * normalisasiDosen[k].c1) + (nilaiKriteria.c2 * normalisasiDosen[k].c2);
-    let b = (nilaiKriteria.c3 * normalisasiDosen[k].c3) + (nilaiKriteria.c4 * normalisasiDosen[k].c4) ;
+    let a = (nilaiKriteria.c1 * normalisasiDosen[k].c1.nilai) + (nilaiKriteria.c2 * normalisasiDosen[k].c2.nilai);
+    let b = (nilaiKriteria.c3 * normalisasiDosen[k].c3.nilai) + (nilaiKriteria.c4 * normalisasiDosen[k].c4.nilai) ;
 
     let v = {
       nilai: a + b
     };
 
     let perangkingan = {
-      id: normalisasiDosen[k]._id,
+      id: normalisasiDosen[k].id,
       nidn: normalisasiDosen[k].nidn,
       nama: normalisasiDosen[k].nama,
       nilai: v.nilai
@@ -320,6 +320,7 @@ module.exports={
      
       const dosen = await Dosen.find({status: "Y"})
 
+      // Proses validasi filter jumlah bimbingan
       const dosenByJumlah = await validasiJumlah(dosen, mahasiswa);
 
       // Menyimpan data nilai kriteria maksimal
@@ -334,7 +335,7 @@ module.exports={
 
       await Mahasiswa.findOneAndUpdate({
         _id: id
-      }, { status: 'accepted' , dosen: finalRangkingDosen[0] })
+      }, { status: 'accepted' , dosen: finalRangkingDosen[0].id })
 
       req.flash('alertMessage', "Berhasil menyetujui pengajuan skripsi")
       req.flash('alertStatus', "success")
