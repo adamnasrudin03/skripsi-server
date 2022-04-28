@@ -232,10 +232,15 @@ module.exports={
       const alertStatus = req.flash("alertStatus")
 
       const alert = { message: alertMessage, status: alertStatus}
-      const mahasiswa = await Mahasiswa.find().sort({ _id: -1 }).populate({
-        'path':'ajaran',
-        'model':'Ajaran'
-     })
+      const mahasiswa = await Mahasiswa.find().sort({ _id: -1 })
+        .populate({
+          'path':'ajaran',
+          'model':'Ajaran'
+        })
+        .populate({
+          'path':'dosen',
+          'model':'Dosen'
+        })
 
       res.render('admin/mahasiswa/view_mahasiswa',{
         mahasiswa,
@@ -273,10 +278,16 @@ module.exports={
     try {
       const { id } = req.params
       
-      const mahasiswa = await Mahasiswa.findOne({_id : id}).populate({
-        'path':'ajaran',
-        'model':'Ajaran'
-     })
+      const mahasiswa = await Mahasiswa.findOne({_id : id})
+        .populate({
+          'path':'ajaran',
+          'model':'Ajaran'
+        })
+        .populate({
+          'path':'dosen',
+          'model':'Dosen'
+        })
+
       res.render('admin/mahasiswa/edit', {
         mahasiswa,
         title: 'Ubah Pengajuan Peoposal'
@@ -293,10 +304,16 @@ module.exports={
     try {
       const { id } = req.params
       
-      const mahasiswa = await Mahasiswa.findOne({_id : id}).populate({
-        'path':'ajaran',
-        'model':'Ajaran'
-     })
+      const mahasiswa = await Mahasiswa.findOne({_id : id})
+        .populate({
+          'path':'ajaran',
+          'model':'Ajaran'
+        })
+        .populate({
+          'path':'dosen',
+          'model':'Dosen'
+        })
+
       res.render('admin/mahasiswa/detail', {
         mahasiswa,
         title: 'Detail Pengajuan Peoposal'
