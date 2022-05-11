@@ -207,7 +207,7 @@ async function perangkingan(normalisasiDosen) {
       nidn: normalisasiDosen[k].nidn,
       nama: normalisasiDosen[k].nama,
       gelar: normalisasiDosen[k].gelar,
-      nilai: v.nilai
+      nilai: parseFloat(v.nilai).toFixed(3)
     };
 
     temp.push(perangkingan);
