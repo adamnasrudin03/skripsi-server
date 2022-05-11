@@ -79,20 +79,22 @@ async function validasiJumlah(dataDosen, mahasiswa) {
       ajaran: mahasiswa.ajaran 
       }).count()
 
+    let jumlah = parseFloat(dataDosen[i].jumlah) ;
     let max = kuotaDosen;
-    if (dataDosen[i].jumlah === nilai.jumlah.sangatBanyak) {
+
+    if (jumlah === nilai.jumlah.sangatBanyak) {
       max = 25;
     }
-    if (dataDosen[i].jumlah === nilai.jumlah.banyak) {
+    if (jumlah === nilai.jumlah.banyak) {
       max = 20;
     }
-    if (dataDosen[i].jumlah === nilai.jumlah.cukup) {
+    if (jumlah === nilai.jumlah.cukup) {
       max = 15;
     }
-    if (dataDosen[i].jumlah === nilai.jumlah.kurang) {
+    if (jumlah === nilai.jumlah.kurang) {
       max = 10;
     }
-    if (dataDosen[i].jumlah === nilai.jumlah.sangatKurang) {
+    if (jumlah === nilai.jumlah.sangatKurang) {
       max = 5;
     }
 
@@ -304,7 +306,7 @@ module.exports={
 
       // Proses Rangking Dosen
       const finalRangkingDosen = await perangkingan(normalisasiDosen);
-      console.log(finalRangkingDosen)
+      
       res.render('admin/mahasiswa/detail', {
         mahasiswa,
         rekomendasi: finalRangkingDosen,
