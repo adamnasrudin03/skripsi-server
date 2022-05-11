@@ -166,7 +166,12 @@
                     <label for="spandosen_sebelum" class="col-sm-2 col-form-label">Dosen Pembimbing Sebelumnya </label>
                     <div class="col-sm-10">
                       <span  id="spandosen_sebelum" >
-                        : <%= mahasiswa.dosen_sebelum %>
+                        : 
+                        <% if(mahasiswa?.dosen_sebelum) { %>
+                          <%= mahasiswa.dosen_sebelum %>
+                        <% } else { %>
+                           -
+                        <% } %>
                       </span>
                     </div>
                   </div>
