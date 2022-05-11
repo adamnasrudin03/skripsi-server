@@ -298,13 +298,14 @@
              class="form-control select2" style="width: 100%; height: 100%;" required>
                         
               <% for(let i = 0; i < rekomendasi.length; i++){ %>
-                <option value="<%= rekomendasi[i].id %>">
+                <option value="<%= rekomendasi[i].id %>" style="text-align: justify;" >
+                  <%= i + 1 %> .) 
                   <%= rekomendasi[i].nama %>
                   <% if(rekomendasi[i].gelar ) { %>
                     , <%= rekomendasi[i].gelar %>
                   <% } %>
-                  nilai : <%= rekomendasi[i].nilai %>
-
+                  &ensp;
+                  - Nilai : <%= rekomendasi[i].nilai %>
                 </option>
               <% } %>
             </select>
