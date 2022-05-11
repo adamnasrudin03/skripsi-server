@@ -320,6 +320,28 @@ module.exports={
     }
   },
 
+  actionUpdateDosen: async (req, res) => {
+    try {
+      const { id } = req.params
+      const { dosen_id } = req.body
+      
+      await Mahasiswa.findOneAndUpdate({
+        _id: id
+      }, { dosen: dosen_id })
+
+      req.flash('alertMessage', "Berhasil ubah dosen pembimbing skripsi")
+      req.flash('alertStatus', "success")
+
+      res.redirect('/mahasiswa')
+
+
+    } catch (err) {
+      req.flash('alertMessage', `${err.message}`)
+      req.flash('alertStatus', 'danger')
+      res.redirect('/mahasiswa')
+    }
+  },
+  
   actionStatusAccepted: async (req, res) => {
     try {
       const { id } = req.params
