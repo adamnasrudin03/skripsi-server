@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 const { index, actionStatusReject, viewDetail, actionStatusAccepted, actionUpdateDosen } = require('./controller')
 
+const { isLoginAdmin } = require('../middleware/auth')
+
+router.use(isLoginAdmin);
 router.get('/', index);
 router.put('/rejected/:id', actionStatusReject);
 router.get('/detail/:id', viewDetail);
