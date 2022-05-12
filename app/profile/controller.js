@@ -6,12 +6,8 @@ module.exports = {
 
       res.render('auth/view_profile', {
         title: 'Detail Profile',
-        admin: {
-          full_name: 'Adam Nasrudin',
-          email: 'admin@gmail.com',
-          gender: 'male',
-          role: 'super_admin'
-        }
+        name: req.session.user.name,
+        admin: req.session.user
       })
     } catch (err) {
       console.log(err)
@@ -23,12 +19,8 @@ module.exports = {
     try {
       res.render('auth/edit', {
         title: 'Ubah Profile',
-        admin: {
-          full_name: 'Adam Nasrudin',
-          email: 'admin@gmail.com',
-          gender: 'male',
-          role: 'super_admin'
-        }
+        name: req.session.user.name,
+        admin: req.session.user
       })
       
     } catch (err) {
@@ -43,6 +35,7 @@ module.exports = {
     try {
 
       res.render('auth/change_password', {
+        name: req.session.user.name,
         title: 'Ganti Kata Sandi',
       })
     } catch (err) {

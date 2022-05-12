@@ -11,7 +11,7 @@ module.exports = {
       const pending = await Mahasiswa.find({status: "pending"}).count()
 
       res.render('admin/dashboard/view_dashboard', {
-        name: 'admin',
+        name: req.session.user.name,
         title: 'Halaman Dashboard',
         count: {
           pending: pending,

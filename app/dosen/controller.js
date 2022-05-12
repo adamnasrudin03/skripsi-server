@@ -13,6 +13,7 @@ module.exports={
       res.render('admin/dosen/view_dosen',{
         dosen,
         alert,
+        name: req.session.user.name,
         title: 'Dosen Pembimbing'
       })
     } catch (err) {
@@ -25,6 +26,7 @@ module.exports={
   viewCreate: async(req, res)=>{
     try {
       res.render('admin/dosen/create',{
+        name: req.session.user.name,
         title: 'Taambah Dosen Pembimbing'
       })
     } catch (err) {
@@ -93,6 +95,7 @@ module.exports={
 
       res.render('admin/dosen/edit', {
         dosen,
+        name: req.session.user.name,
         title: 'Ubah Dosen Pembimbing'
       })
       

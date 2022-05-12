@@ -38,7 +38,10 @@ module.exports = {
               id: check._id,
               email: check.email,
               status: check.status,
-              name: check.name
+              name: check.name,
+              gender: check.gender,
+              role: check.role,
+              phoneNumber: check.phoneNumber
             }
             res.redirect('/dashboard')
           } else {

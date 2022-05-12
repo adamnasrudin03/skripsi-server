@@ -249,6 +249,7 @@ module.exports={
       res.render('admin/mahasiswa/view_mahasiswa',{
         mahasiswa,
         alert,
+        name: req.session.user.name,
         title: 'Pengajuan Proposal Skripsi'
       })
     } catch (err) {
@@ -310,6 +311,7 @@ module.exports={
       res.render('admin/mahasiswa/detail', {
         mahasiswa,
         rekomendasi: finalRangkingDosen,
+        name: req.session.user.name,
         title: 'Detail Pengajuan Peoposal'
       })
       

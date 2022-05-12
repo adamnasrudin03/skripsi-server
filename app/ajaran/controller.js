@@ -16,6 +16,7 @@ module.exports={
       res.render('admin/ajaran/view_ajaran',{
         ajaran,
         alert,
+        name: req.session.user.name,
         title: 'Tahun Ajaran'
       })
     } catch (err) {
@@ -28,6 +29,7 @@ module.exports={
   viewCreate: async(req, res)=>{
     try {
       res.render('admin/ajaran/create',{
+        name: req.session.user.name,
         title: 'Taambah Tahun Ajaran'
       })
     } catch (err) {
@@ -64,6 +66,7 @@ module.exports={
 
       res.render('admin/ajaran/edit', {
         ajaran,
+        name: req.session.user.name,
         title: 'Ubah Tahun Ajaran'
       })
       
