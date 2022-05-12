@@ -12,7 +12,7 @@ module.exports = {
 
       res.render('admin/dashboard/view_dashboard', {
         name: req.session.user.name,
-        title: 'Halaman Dashboard',
+        title: 'Dashboard',
         count: {
           pending: pending,
           accepted: accepted,
