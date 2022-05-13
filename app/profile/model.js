@@ -27,6 +27,7 @@ let userSchema = mongoose.Schema({
     type: String,
     require: [true, 'nomor telpon harus diisi']
   },
+  thumbnial : {type : String},
 
 }, { timestamps: true })
 
