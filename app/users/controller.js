@@ -41,7 +41,8 @@ module.exports = {
               name: check.name,
               gender: check.gender,
               role: check.role,
-              phoneNumber: check.phoneNumber
+              phoneNumber: check.phoneNumber,
+              thumbnial: check.thumbnial
             }
             res.redirect('/dashboard')
           } else {
