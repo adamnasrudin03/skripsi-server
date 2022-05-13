@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const {index, viewEdit, viewChangePassword, actionEdit} = require('./controller');
+const {index, viewEdit, viewChangePassword, actionEdit, actionChangePassword} = require('./controller');
 const multer = require('multer');
 const os = require('os');
 
@@ -14,6 +14,7 @@ router.put('/edit/:id',
     actionEdit
 );
 router.get('/change-password', viewChangePassword);
+router.put('/change-password/:id', actionChangePassword);
 
 
 module.exports = router;

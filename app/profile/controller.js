@@ -1,4 +1,5 @@
 const User = require('./../users/model')
+const bcrypt = require('bcryptjs')
 
 module.exports = {
   index: async (req, res) => {
@@ -145,16 +146,70 @@ module.exports = {
 
   viewChangePassword: async (req, res) => {
     try {
+      const alertMessage = req.flash("alertMessage")
+      const alertStatus = req.flash("alertStatus")
+      const alert = { message: alertMessage, status: alertStatus}
 
       res.render('auth/change_password', {
         name: req.session.user.name,
         title: 'Ganti Kata Sandi',
+        alert,
+        admin: req.session.user
       })
     } catch (err) {
       req.flash('alertMessage', `${err.message}`)
       req.flash('alertStatus', 'danger')
       res.redirect('/profile')
 
+    }
+  },
+
+  actionChangePassword : async(req, res)=>{
+    try {
+      const { id } = req.params;
+      
+      const checkById = await User.findOne({ _id: id });
+      if (!checkById) {
+        req.flash('alertMessage', `Data tidak terdaftar`)
+        req.flash('alertStatus', 'danger')
+        res.redirect('/profile/change-password')
+        return;
+      }
+
+      const { oldPassword, newPassword, confirmPassword } = req.body;
+
+      if(newPassword !== confirmPassword) {
+        req.flash('alertMessage', `Konfirmasi kata sandi anda tidak sesuai`)
+        req.flash('alertStatus', 'danger')
+        res.redirect('/profile/change-password')
+        return;
+      }
+
+      const checkPassword = await bcrypt.compare(oldPassword, checkById.password);
+      if(!checkPassword) {
+        req.flash('alertMessage', `Kata sandi saat ini yang anda inputkan salah`)
+        req.flash('alertStatus', 'danger')
+        res.redirect('/profile/change-password')
+        return;
+      }
+
+      // generate salt to hash password
+      const salt = await bcrypt.genSalt(10);
+      // now we set user password to hashed password
+      let hashPassword = await bcrypt.hash(newPassword, salt);
+
+      await User.findOneAndUpdate({
+        _id: id
+      },{ password: hashPassword })
+
+      req.flash('alertMessage', "Berhasil ubah kata sandi, silahkan login kembali")
+      req.flash('alertStatus', "success")
+
+      res.redirect('/profile/change-password')
+    } catch (err) {
+      req.flash('alertMessage', `${err.message}`)
+      req.flash('alertStatus', 'danger')
+      res.redirect('/profile/change-password')
     }
   },
   
