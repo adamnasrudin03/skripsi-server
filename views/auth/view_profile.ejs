@@ -26,6 +26,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
+        <%- include ../partials/message.ejs %>
         <div class="row">
           <div class="col-md-12">
 
@@ -81,7 +82,11 @@
                         <label for="spanGender" class="col-sm-2 col-form-label">Jenis Kelamin</label>
                         <div class="col-sm-10">
                           <span  id="spanGender" >
-                            <%= admin.gender %>
+                            <% if(admin.gender === "female") { %>
+                              Perempuan
+                            <% } else  if(admin.gender === "male") { %>
+                              Laki-laki
+                            <% } %>
                           </span>
                         </div>
                       </div>
