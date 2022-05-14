@@ -32,6 +32,7 @@ let userSchema = mongoose.Schema({
     type: String,
     require: [true, 'nomor telpon harus diisi']
   },
+  avatar : {type : String},
 
 }, { timestamps: true })
 
