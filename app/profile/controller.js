@@ -1,5 +1,8 @@
 const User = require('./../users/model')
 const bcrypt = require('bcryptjs')
+const path = require('path')
+const fs = require('fs')
+const config = require('../../config')
 
 module.exports = {
   index: async (req, res) => {
@@ -49,7 +52,7 @@ module.exports = {
         return;
       }
 
-      const { email, name, gender, phoneNumber} = req.body;
+      const {  email, name, gender, phoneNumber} = req.body;
 
       const checkByEmail = await User.findOne({ email: email })
       
@@ -60,7 +63,7 @@ module.exports = {
         return;
       }
 
-      if(req.image){
+      if(req.file){
         let tmp_path= req.file.path;
         let originaExt = req.file.originalname.split('.')[req.file.originalname.split('.').length - 1];
         let filename = req.file.filename + '.' + originaExt;
@@ -75,19 +78,18 @@ module.exports = {
           try {
             const check = await User.findOne({_id: id})
 
-            let currentImage = `${config.rootPath}/public/uploads/${check.thumbnial}`;
+            let currentImage = `${config.rootPath}/public/uploads/${check.avatar}`;
             if(fs.existsSync(currentImage)){
               fs.unlinkSync(currentImage)
             }
-
             await User.findOneAndUpdate({
               _id: id
             },{ 
+              avatar: filename,
               email, 
               gender, 
               name, 
               phoneNumber,
-              thumbnial: filename
              })
              
             const user = await User.findOne({_id: id})
@@ -100,7 +102,7 @@ module.exports = {
               gender: user.gender,
               role: user.role,
               phoneNumber: user.phoneNumber,
-              thumbnial: user.thumbnial
+              avatar: user.avatar
             }
       
             req.flash('alertMessage', "Berhasil ubah data profile")
@@ -129,7 +131,7 @@ module.exports = {
           gender: user.gender,
           role: user.role,
           phoneNumber: user.phoneNumber,
-          thumbnial: user.thumbnial
+          avatar: user.avatar
         }
         
         req.flash('alertMessage', "Berhasil ubah data profile")

@@ -42,7 +42,7 @@ module.exports = {
               gender: check.gender,
               role: check.role,
               phoneNumber: check.phoneNumber,
-              thumbnial: check.thumbnial
+              avatar: check.avatar
             }
             res.redirect('/dashboard')
           } else {

@@ -9,10 +9,7 @@ const { isLoginAdmin } = require('../middleware/auth')
 router.use(isLoginAdmin);
 router.get('/', index);
 router.get('/edit', viewEdit);
-router.put('/edit/:id', 
-    multer({ dest: os.tmpdir() }).single('image'),
-    actionEdit
-);
+router.put('/edit/:id', multer({ dest: os.tmpdir() }).single('avatar'), actionEdit);
 router.get('/change-password', viewChangePassword);
 router.put('/change-password/:id', actionChangePassword);
 

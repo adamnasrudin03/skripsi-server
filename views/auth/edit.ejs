@@ -11,13 +11,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Ubah Admin Profile</h1>
+            <h1>Ubah Profile</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/dashboard">Beranda</a></li>
               <li class="breadcrumb-item"><a href="/profile">Detail</a></li>
-              <li class="breadcrumb-item active">Ubah Admin Profile</li>
+              <li class="breadcrumb-item active">Ubah Profile</li>
             </ol>
           </div>
         </div>
@@ -28,30 +28,6 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-12">
-
-            <!-- Profile Image -->
-            <div class="card card-primary card-outline">
-
-              <div class="card-body box-profile">
-                <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle"
-                       src="/adminlte/dist/img/AdminLTELogo.png"
-                       alt="User profile picture">
-                </div>
-
-                <h3 class="profile-username text-center"><%= admin.name %></h3>
-                <p class="text-muted text-center"><%= admin.role %></p>
-                
-              </div>
-              
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-          </div>
-        </div>
-        <div class="row">
           <!-- /.col -->
           <div class="col-md-12">
             <div class="card">
@@ -59,9 +35,28 @@
                 <div class="tab-content">
 
                   <div class="active tab-pane" id="settings">
-                    <h3>Ubah Profile</h3>
-                    <hr/>
-                    <form action="/profile/edit/<%= admin.id %>?_method=PUT" method="post">
+                    <form action="/profile/edit/<%= admin.id %>?_method=PUT" method="post" enctype="multipart/form-data">
+                      <div class="form-group row">
+                        <div class="col-sm-12 text-center" >
+                          <img 
+                            class="profile-user-img img-fluid img-circle"
+                            src="/uploads/<%= admin.avatar ? admin.avatar : '2.png' %> " 
+                            style="height: 200px; width: 200px;"
+                            id="perview"> 
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label for="image" class="col-sm-2 col-form-label">Unggah Foto</label>
+                        <div class="col-sm-10">
+                          <input
+                            type="file"
+                            name="avatar" 
+                            id="image"
+                            placeholder="pilih file">
+                        </div>
+                      </div>
+                      
                       <div class="form-group row">
                         <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                         <div class="col-sm-10">
@@ -86,6 +81,19 @@
                             id="inputEmail"
                             placeholder="Email"
                             value="<%= admin.email %>">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputphoneNumber" class="col-sm-2 col-form-label">No Handphone</label>
+                        <div class="col-sm-10">
+                          <input 
+                            name="phoneNumber"
+                            required
+                            type="number"
+                            class="form-control"
+                            id="inputphoneNumber"
+                            placeholder="No Handphone"
+                            value="<%= admin.phoneNumber %>">
                         </div>
                       </div>
                       <div class="form-group row">
@@ -150,3 +158,23 @@
 
 <%- include ../partials/footer.ejs %>
 <%- include ../partials/js.ejs %>
+
+<script>
+  function readURL (input){
+    if(input.files && input.files[0]){
+      const reader = new FileReader();
+
+      reader.onload = function(e){
+        $('#perview').attr('src', e.target.result);
+        $('#perview').attr('width', '20%');
+        $('#perview').attr('height', '20%');
+      }
+
+      reader.readAsDataURL(input.files[0])
+    }
+  }
+
+  $('#image').change(function(){
+    readURL(this)
+  })
+</script>
