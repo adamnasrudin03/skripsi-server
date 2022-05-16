@@ -15,8 +15,13 @@
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           hai, <b>
-            <%= name %>
-          </b>
+            <%=  admin.name %>
+          </b> &nbsp;
+            <img 
+              class="profile-user-img img-fluid img-circle"
+              style="height: 35px; width: 35px; border: 0;"
+              src="/uploads/<%= admin.avatar ?  admin.avatar : 'blank.png' %> "
+              alt="<%=  admin.name %> picture">
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <div class="dropdown-divider"></div>
