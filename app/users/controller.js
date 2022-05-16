@@ -10,7 +10,7 @@ module.exports = {
 
       const alert = { message: alertMessage, status: alertStatus }
       if (req.session.user === null || req.session.user === undefined) {
-        res.render('admin/users/view_signin', {
+        res.render('auth/view_signin', {
           alert,
           title : 'Halaman signin'
         })
