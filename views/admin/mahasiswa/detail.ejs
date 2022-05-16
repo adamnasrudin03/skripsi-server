@@ -303,7 +303,11 @@
              class="form-control select2" style="width: 100%; height: 100%;" required>
                         
               <% for(let i = 0; i < rekomendasi.length; i++){ %>
-                <option value="<%= rekomendasi[i].id %>" style="text-align: justify;" >
+                <option value="<%= rekomendasi[i].id %>" style="text-align: justify;" 
+                  <% if(rekomendasi[i].id == dosenID) { %>
+                    selected
+                    <% } %> 
+                  >
                   <%= i + 1 %> .) 
                   <%= rekomendasi[i].nama %>
                   <% if(rekomendasi[i].gelar ) { %>
