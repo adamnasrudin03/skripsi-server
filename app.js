@@ -13,11 +13,11 @@ var ajaranRouter = require('./app/ajaran/router');
 var profileRouter = require('./app/profile/router');
 var dosenRouter = require('./app/dosen/router');
 var mahasiswaRouter = require('./app/mahasiswa/router');
-var usersRouter = require('./app/users/router');
+var authRouter = require('./app/auth/router');
 
 var apiAjaranRouter = require('./app/ajaran/apiRouter');
 var apiMahasiswaRouter = require('./app/mahasiswa/apiRouter');
-var apiUserRouter = require('./app/users/apiRouter');
+var apiAuthRouter = require('./app/auth/apiRouter');
 
 var app = express();
 const URL = `/api/v1`;
@@ -43,7 +43,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
 app.use('/adminlte', express.static(path.join(__dirname, '/node_modules/admin-lte/')));
 
-app.use('/', usersRouter);
+app.use('/', authRouter);
 app.use('/profile', profileRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/ajaran', ajaranRouter);
@@ -53,7 +53,7 @@ app.use('/mahasiswa', mahasiswaRouter);
 // api
 app.use(`${URL}/ajaran-years`, apiAjaranRouter);
 app.use(`${URL}/pengajuan-skripsi`, apiMahasiswaRouter);
-app.use(`${URL}/auth`, apiUserRouter);
+app.use(`${URL}/auth`, apiAuthRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
