@@ -14,7 +14,7 @@ module.exports = {
       res.render('auth/view_profile', {
         title: 'Detail Profile',
         alert,
-        name: req.session.user.name,
+        admin: req.session.user,
         admin: req.session.user
       })
     } catch (err) {
@@ -28,7 +28,7 @@ module.exports = {
     try {
       res.render('auth/edit', {
         title: 'Ubah Profile',
-        name: req.session.user.name,
+        admin: req.session.user,
         admin: req.session.user
       })
       
@@ -153,7 +153,7 @@ module.exports = {
       const alert = { message: alertMessage, status: alertStatus}
 
       res.render('auth/change_password', {
-        name: req.session.user.name,
+        admin: req.session.user,
         title: 'Ganti Kata Sandi',
         alert,
         admin: req.session.user
