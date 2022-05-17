@@ -10,9 +10,6 @@ module.exports={
       const alert = { message: alertMessage, status: alertStatus}
       const ajaran = await Ajaran.find().sort({ createdAt: -1 })
 
-      console.log("alert >>")
-      console.log(alert)
-
       res.render('admin/ajaran/view_ajaran',{
         ajaran,
         alert,
