@@ -387,7 +387,7 @@ module.exports={
 
   apiActionCreate : async(req, res)=>{
     try {
-      const { npm, nama, semester, email, no_wa, 
+      let { npm, nama, semester, email, no_wa, 
         judul_skripsi, tema_skripsi, file_proposal, file_rekap_nilai,
         mata_kuliah_lain, dosen_sebelum, ajaran, lanjutan } = req.body;
 
