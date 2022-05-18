@@ -3,7 +3,8 @@ const Dosen = require('./../dosen/model')
 const nilai = require('./../dosen/nilai');
 const path = require('path')
 const fs = require('fs')
-const config = require('../../config')
+const config = require('../../config');
+const { validateEmail } = require('../../helpers');
 
 async function getMax(dataDosen) {
   // Simpan data nilai maksimal dari data dosen yang ada sesuai kriteria
@@ -392,6 +393,11 @@ module.exports={
         mata_kuliah_lain, dosen_sebelum, ajaran, lanjutan } = req.body;
 
       dosen_sebelum = dosen_sebelum ? dosen_sebelum : '-';
+
+      if(!validateEmail(email)) {
+        res.status(400).json({ message: `Format email yang anda masukan tidak sesuai.` , data: undefined });
+        return;
+      }
 
       //check phone input [first chart input 62 or 0]
       if(no_wa.charAt(0) === "6" && no_wa.charAt(1) === "2") {

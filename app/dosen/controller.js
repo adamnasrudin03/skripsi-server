@@ -1,5 +1,6 @@
 const Dosen = require('./model')
 const Mahasiswa = require('./../mahasiswa/model')
+const { validateEmail } = require('../../helpers')
 
 module.exports={
   index: async(req, res)=>{
@@ -43,6 +44,13 @@ module.exports={
         bidang_aplikasi_web, bidang_aplikasi_mobile, bidang_data_mining,
         bidang_iot, bidang_desain_aplikasi, bidang_jaringan_komputer, 
         bidang_basis_data } = req.body
+
+      if(!validateEmail(email)) {
+        req.flash('alertMessage', `Format email yang anda masukan tidak sesuai.`)
+        req.flash('alertStatus', 'danger')
+        res.redirect('/dosen')
+        return;
+      }
 
       let formatWA;
       //check phone input [first chart input 62 or 0]
@@ -135,6 +143,13 @@ module.exports={
         bidang_iot, bidang_desain_aplikasi, bidang_jaringan_komputer, 
         bidang_basis_data } = req.body
 
+      if(!validateEmail(email)) {
+        req.flash('alertMessage', `Format email yang anda masukan tidak sesuai.`)
+        req.flash('alertStatus', 'danger')
+        res.redirect('/dosen')
+        return;
+      }
+      
       let formatWA;
       //check phone input [first chart input 62 or 0]
       if(no_wa.charAt(0) === "6" && no_wa.charAt(1) === "2") {
