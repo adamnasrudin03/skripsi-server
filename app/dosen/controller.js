@@ -104,7 +104,7 @@ module.exports={
       const { id } = req.params
       
       let dosen = await Dosen.findOne({_id : id})
-      
+
       //check no_wa res [delete first chart  62 or 0]
       if(dosen.no_wa.charAt(0) === "6" && dosen.no_wa.charAt(1) === "2") {
         dosen.no_wa =  dosen.no_wa.substr(2, dosen.no_wa.length);
@@ -126,7 +126,7 @@ module.exports={
   },
 
   actionEdit : async(req, res)=>{
-    try {dosen
+    try {
       const { id } = req.params
 
       const { nidn, nama, gelar, email, no_wa, 
