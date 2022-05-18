@@ -245,9 +245,11 @@
                     Kembali
                   </a>
                   
-                  <button class="btn btn-sm btn-primary" style="margin: 10px;" type="button" data-toggle="modal" data-target="#modal-hapus">
-                    <i class="fas fa-pencil-alt"></i> Ubah
-                  </button>
+                  <% if(mahasiswa.status !== 'pending') { %>
+                    <button class="btn btn-sm btn-primary" style="margin: 10px;" type="button" data-toggle="modal" data-target="#modal-hapus">
+                      <i class="fas fa-pencil-alt"></i> Ubah
+                    </button>
+                  <% } %>
 
                   <% if(mahasiswa.status === 'pending') { %>
                     <form action="/mahasiswa/rejected/<%= mahasiswa._id %>?_method=PUT" method="post" 
