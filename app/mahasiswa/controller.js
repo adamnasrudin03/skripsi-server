@@ -310,7 +310,7 @@ module.exports={
       
       res.render('admin/mahasiswa/detail', {
         mahasiswa,
-        dosenID: mahasiswa.dosen._id.toString(),
+        dosenID: mahasiswa.dosen?._id.toString() || '',
         rekomendasi: finalRangkingDosen,
         admin: req.session.user,
         title: 'Detail Pengajuan Peoposal'
