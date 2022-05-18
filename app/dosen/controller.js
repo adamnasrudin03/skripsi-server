@@ -44,7 +44,19 @@ module.exports={
         bidang_iot, bidang_desain_aplikasi, bidang_jaringan_komputer, 
         bidang_basis_data } = req.body
 
-      let dosen = await Dosen({ nidn, nama, gelar, email, no_wa, 
+      let formatWA;
+      //check phone input [first chart input 62 or 0]
+      if(no_wa.charAt(0) === "6" && no_wa.charAt(1) === "2") {
+        formatWA = "62" + no_wa.substr(2, no_wa.length);
+      } else if(no_wa.charAt(0) === "0") {
+        formatWA = "62" + no_wa.substr(1, no_wa.length);
+      } else if(no_wa === "") {
+        formatWA = no_wa;
+      } else {
+        formatWA = "62" + no_wa;
+      }
+
+      let dosen = await Dosen({ nidn, nama, gelar, email, no_wa: formatWA, 
         pendidikan, fungsional, jumlah, bidang_aplikasi_desktop,
         bidang_aplikasi_web, bidang_aplikasi_mobile, bidang_data_mining,
         bidang_iot, bidang_desain_aplikasi, bidang_jaringan_komputer, 
@@ -116,9 +128,21 @@ module.exports={
         bidang_iot, bidang_desain_aplikasi, bidang_jaringan_komputer, 
         bidang_basis_data } = req.body
 
+      let formatWA;
+      //check phone input [first chart input 62 or 0]
+      if(no_wa.charAt(0) === "6" && no_wa.charAt(1) === "2") {
+        formatWA = "62" + no_wa.substr(2, no_wa.length);
+      } else if(no_wa.charAt(0) === "0") {
+        formatWA = "62" + no_wa.substr(1, no_wa.length);
+      } else if(no_wa === "") {
+        formatWA = no_wa;
+      } else {
+        formatWA = "62" + no_wa;
+      }
+
       await Dosen.findOneAndUpdate({
         _id: id
-      },{ nidn, nama, gelar, email, no_wa, 
+      },{ nidn, nama, gelar, email, no_wa: formatWA, 
         pendidikan, fungsional, jumlah, bidang_aplikasi_desktop,
         bidang_aplikasi_web, bidang_aplikasi_mobile, bidang_data_mining,
         bidang_iot, bidang_desain_aplikasi, bidang_jaringan_komputer, 

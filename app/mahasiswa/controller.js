@@ -393,6 +393,17 @@ module.exports={
 
       dosen_sebelum = dosen_sebelum ? dosen_sebelum : '-';
 
+      //check phone input [first chart input 62 or 0]
+      if(no_wa.charAt(0) === "6" && no_wa.charAt(1) === "2") {
+        no_wa = "62" + no_wa.substr(2, no_wa.length);
+      } else if(no_wa.charAt(0) === "0") {
+        no_wa = "62" + no_wa.substr(1, no_wa.length);
+      } else if(no_wa === "") {
+        no_wa = no_wa;
+      } else {
+        no_wa = "62" + no_wa;
+      }
+
       let mahasiswa = await Mahasiswa({ npm, nama, semester, email, no_wa, 
         judul_skripsi, tema_skripsi, file_proposal, file_rekap_nilai,
         mata_kuliah_lain, dosen_sebelum, ajaran, lanjutan })
