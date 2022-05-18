@@ -33,7 +33,6 @@ module.exports = {
       })
       
     } catch (err) {
-      console.log(err)
       req.flash('alertMessage', `${err.message}`)
       req.flash('alertStatus', 'danger')
       res.redirect('/profile')
