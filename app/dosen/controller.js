@@ -103,7 +103,14 @@ module.exports={
     try {
       const { id } = req.params
       
-      const dosen = await Dosen.findOne({_id : id})
+      let dosen = await Dosen.findOne({_id : id})
+      
+      //check no_wa res [delete first chart  62 or 0]
+      if(dosen.no_wa.charAt(0) === "6" && dosen.no_wa.charAt(1) === "2") {
+        dosen.no_wa =  dosen.no_wa.substr(2, dosen.no_wa.length);
+      } else if(dosen.no_wa.charAt(0) === "0") {
+        dosen.no_wa =  dosen.no_wa.substr(1, dosen.no_wa.length);
+      } 
 
       res.render('admin/dosen/edit', {
         dosen,
@@ -119,7 +126,7 @@ module.exports={
   },
 
   actionEdit : async(req, res)=>{
-    try {
+    try {dosen
       const { id } = req.params
 
       const { nidn, nama, gelar, email, no_wa, 
