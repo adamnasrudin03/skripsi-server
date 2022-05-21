@@ -246,6 +246,10 @@ module.exports={
           'path':'dosen',
           'model':'Dosen'
         })
+        .populate({
+          'path':'dosen2',
+          'model':'Dosen'
+        })
 
       res.render('admin/mahasiswa/view_mahasiswa',{
         mahasiswa,
