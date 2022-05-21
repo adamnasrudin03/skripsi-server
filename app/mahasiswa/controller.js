@@ -293,9 +293,13 @@ module.exports={
           'path':'dosen',
           'model':'Dosen'
         })
+        .populate({
+          'path':'dosen2',
+          'model':'Dosen'
+        })
 
       const dosen = await Dosen.find({status: "Y"});
-
+      const dosen2 = dosen;
       // Proses validasi filter jumlah bimbingan
       const dosenByJumlah = await validasiJumlah(dosen, mahasiswa);
 
@@ -312,7 +316,9 @@ module.exports={
       res.render('admin/mahasiswa/detail', {
         mahasiswa,
         dosenID: mahasiswa.dosen?._id.toString() || '',
+        dosen2ID: mahasiswa.dosen2?._id.toString() || '',
         rekomendasi: finalRangkingDosen,
+        dosen2,
         admin: req.session.user,
         title: 'Detail Pengajuan Peoposal'
       })
@@ -327,11 +333,11 @@ module.exports={
   actionUpdateDosen: async (req, res) => {
     try {
       const { id } = req.params
-      const { dosen_id } = req.body
+      const { dosen_id, dosen2_id } = req.body
       
       await Mahasiswa.findOneAndUpdate({
         _id: id
-      }, { dosen: dosen_id })
+      }, { dosen: dosen_id, dosen2: dosen2_id })
 
       req.flash('alertMessage', "Berhasil ubah dosen pembimbing skripsi")
       req.flash('alertStatus', "success")

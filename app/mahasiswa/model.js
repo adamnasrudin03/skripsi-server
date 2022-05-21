@@ -61,6 +61,10 @@ let mahasiswaSchema = mongoose.Schema({
   dosen : {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Dosen'
+  },
+  dosen2 : {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Dosen'
   }
 }, { timestamps: true })
 

@@ -7,7 +7,8 @@
       <th>Nama</th>
       <th>Judul Skripsi</th>
       <th>Tema Skripsi</th>
-      <th>Dosen Pembimbing</th>
+      <th>Dosen Pembimbing 1</th>
+      <th>Dosen Pembimbing 2</th>
       <th>Status</th>
       <th>Aksi</th>
     </tr>
@@ -52,6 +53,14 @@
             
             <% if(mahasiswa[i]?.dosen?.gelar) { %>
               , <%= mahasiswa[i].dosen.gelar %>
+            <% } %>
+            
+          </td>
+          <td>
+            <%= mahasiswa[i]?.dosen2?.nama ?? '-' %>
+            
+            <% if(mahasiswa[i]?.dosen2?.gelar) { %>
+              , <%= mahasiswa[i].dosen2.gelar %>
             <% } %>
             
           </td>

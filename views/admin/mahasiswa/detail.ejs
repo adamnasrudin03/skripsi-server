@@ -192,13 +192,26 @@
                   </div>
                   
                   <div class="form-group row">
-                    <label for="spanRole" class="col-sm-2 col-form-label">Dosen Pembimbing Saat Ini  </label>
+                    <label for="dosen1" class="col-sm-2 col-form-label">Dosen Pembimbing 1 Saat Ini  </label>
                     <div class="col-sm-10">
-                      <span  id="spanRole" >
+                      <span  id="dosen1" >
                         : <%= mahasiswa?.dosen?.nama ?? '-' %>
                         
                         <% if(mahasiswa?.dosen?.gelar) { %>
                           , <%= mahasiswa.dosen.gelar %>
+                        <% } %>
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group row">
+                    <label for="dosen2" class="col-sm-2 col-form-label">Dosen Pembimbing 2 Saat Ini  </label>
+                    <div class="col-sm-10">
+                      <span  id="dosen2" >
+                        : <%= mahasiswa?.dosen2?.nama ?? '-' %>
+                        
+                        <% if(mahasiswa?.dosen2?.gelar) { %>
+                          , <%= mahasiswa.dosen2.gelar %>
                         <% } %>
                       </span>
                     </div>
@@ -332,6 +345,27 @@
                   <% } %>
                   &ensp;
                   - Nilai : <%= rekomendasi[i].nilai %>
+                </option>
+              <% } %>
+            </select>
+          </div>
+
+          <div class="form-group" style="margin-top: -10px;">
+            <label for="dosen2">Dosen Pembimbing 2</label>
+            <select multiple id="dosen2" name="dosen2_id"
+             class="form-control select2" style="width: 100%; height: 100%;" required>
+                        
+              <% for(let j = 0; j < dosen2.length; j++){ %>
+                <option value="<%= dosen2[j].id %>" style="text-align: justify;" 
+                  <% if(dosen2[j].id == dosen2ID) { %>
+                    selected
+                    <% } %> 
+                  >
+                  <%= j + 1 %> .) 
+                  <%= dosen2[j].nama %>
+                  <% if(dosen2[j].gelar ) { %>
+                    , <%= dosen2[j].gelar %>
+                  <% } %>
                 </option>
               <% } %>
             </select>
