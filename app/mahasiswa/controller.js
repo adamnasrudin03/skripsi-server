@@ -302,7 +302,7 @@ module.exports={
           'model':'Dosen'
         })
 
-      const dosen = await Dosen.find({status: "Y"});
+      const dosen = await Dosen.find({status: "Y"}).sort({ nama: 1 });
       const dosen2 = dosen;
       // Proses validasi filter jumlah bimbingan
       const dosenByJumlah = await validasiJumlah(dosen, mahasiswa);
