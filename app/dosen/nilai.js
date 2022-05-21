@@ -4,6 +4,7 @@ const pendidikan = {
 }
 
 const fungsional = {
+    belumAdaJaFung: 0,
     tenagaPengajar: 0.25,
     asistenAhli: 0.50,
     lektor: 0.75,

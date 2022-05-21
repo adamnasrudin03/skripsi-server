@@ -39,9 +39,9 @@ let dosenSchema = mongoose.Schema({
   },
   fungsional: {
     type: SchemaTypes.Decimal128,
-    enum: [nilai.fungsional.tenagaPengajar, nilai.fungsional.asistenAhli, 
+    enum: [nilai.fungsional.belumAdaJaFung, nilai.fungsional.tenagaPengajar, nilai.fungsional.asistenAhli, 
       nilai.fungsional.lektor, nilai.fungsional.lektorKepala],
-    default: nilai.fungsional.tenagaPengajar,
+    default: nilai.fungsional.belumAdaJaFung,
     require: [true, 'Jabatan fungsional dosen harus diiisi']
   },
   bidang_aplikasi_desktop: {

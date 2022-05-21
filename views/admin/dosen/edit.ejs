@@ -101,6 +101,10 @@
                       <select id="fungsional" name="fungsional" class="form-control select2" style="width: 100%;" 
                         required>
                           <option selected="selected" value="" hidden>Masukan jabatan fungsional dosen</option>
+                          <option value="0"
+                            <% if(dosen.fungsional == "0") { %>
+                            selected
+                            <% } %> >Belum Ada Jabatan Fungsional</option>
                           <option value="0.25"
                             <% if(dosen.fungsional == "0.25") { %>
                             selected
