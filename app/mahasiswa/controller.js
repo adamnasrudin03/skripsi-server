@@ -301,6 +301,10 @@ module.exports={
           'path':'dosen2',
           'model':'Dosen'
         })
+        .populate({
+          'path':'pesan',
+          'model':'Pesan'
+        })
 
       const dosen = await Dosen.find({status: "Y"}).sort({ nama: 1 });
       const dosen2 = dosen;
@@ -389,6 +393,29 @@ module.exports={
 
       res.redirect('/mahasiswa')
 
+    } catch (err) {
+      req.flash('alertMessage', `${err.message}`)
+      req.flash('alertStatus', 'danger')
+      res.redirect('/mahasiswa')
+    }
+  },
+
+  viewPesan : async(req, res)=>{
+    try {
+      const { id } = req.params
+      
+      const mahasiswa = await Mahasiswa.findOne({_id : id})
+        .populate({
+          'path':'pesan',
+          'model':'Pesan'
+        })
+
+      res.render('admin/mahasiswa/edit_pesan', {
+        mahasiswa,
+        admin: req.session.user,
+        title: 'Tambah Pesan'
+      })
+      
     } catch (err) {
       req.flash('alertMessage', `${err.message}`)
       req.flash('alertStatus', 'danger')

@@ -262,6 +262,30 @@
                     </div>
                   </div>
 
+                  <% if(mahasiswa.status !== 'pending') { %>
+                    <div class="form-group row">
+                      <label for="pesan" class="col-sm-2 col-form-label">Pesan WhatsApp</label>
+                      <div class="col-sm-10">
+                        <span id="pesan" >
+                          : 
+                          <% if(mahasiswa?.pesan) { %>
+                            <a target="_blank" href="<%= mahasiswa?.pesan?.link %>" title="Kirim Pesan"
+                              class="btn btn-sm btn-info">
+                              <i class="fab fa-whatsapp"></i>&ensp;
+                                Kirim Pesan
+                            </a>
+                          <% } else { %>
+                            <a href="/mahasiswa/detail/<%= mahasiswa.id %>/message " title="Tambah Pesan"
+                              class="btn btn-sm btn-primary">
+                              <i class="fas fa-pencil-alt"></i>&ensp;
+                                Tambah Pesan
+                            </a>
+                          <% }  %>
+                        </span>
+                      </div>
+                    </div>
+                  <% } %>
+
                 </form>
               </div>
               <div class="card-footer">
