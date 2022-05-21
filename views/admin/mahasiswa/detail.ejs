@@ -164,12 +164,26 @@
                   </div>
                   
                   <div class="form-group row">
-                    <label for="spandosen_sebelum" class="col-sm-2 col-form-label">Dosen Pembimbing Sebelumnya </label>
+                    <label for="spandosen_sebelum" class="col-sm-2 col-form-label">Dosen Pembimbing 1 Sebelumnya </label>
                     <div class="col-sm-10">
                       <span  id="spandosen_sebelum" >
                         : 
                         <% if(mahasiswa?.dosen_sebelum) { %>
                           <%= mahasiswa.dosen_sebelum %>
+                        <% } else { %>
+                           -
+                        <% } %>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="spandosen_sebelum2" class="col-sm-2 col-form-label">Dosen Pembimbing 2 Sebelumnya </label>
+                    <div class="col-sm-10">
+                      <span  id="spandosen_sebelum2" >
+                        : 
+                        <% if(mahasiswa?.dosen_sebelum2) { %>
+                          <%= mahasiswa.dosen_sebelum2 %>
                         <% } else { %>
                            -
                         <% } %>

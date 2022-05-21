@@ -52,6 +52,7 @@ let mahasiswaSchema = mongoose.Schema({
   file_rekap_nilai : {type : String},
   mata_kuliah_lain : {type : String, default: '-'},
   dosen_sebelum : {type : String, default: '-'},
+  dosen_sebelum2 : {type : String, default: '-'},
   ajaran : {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Ajaran',
