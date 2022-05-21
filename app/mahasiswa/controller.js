@@ -1,5 +1,6 @@
 const Mahasiswa = require('./model')
 const Dosen = require('./../dosen/model')
+const Pesan = require('./../pesan/model')
 const nilai = require('./../dosen/nilai');
 const path = require('path')
 const fs = require('fs')
@@ -230,6 +231,10 @@ const nilaiKriteria = {
   c4: 0.75
 }
 
+function getLinkWhastapp(number, message) {
+  return 'https://wa.me/' + number + '?text=%20' + encodeURIComponent(message)
+}
+
 module.exports={
   index: async(req, res)=>{
     try {
@@ -416,6 +421,37 @@ module.exports={
         title: 'Tambah Pesan'
       })
       
+    } catch (err) {
+      req.flash('alertMessage', `${err.message}`)
+      req.flash('alertStatus', 'danger')
+      res.redirect('/mahasiswa')
+    }
+  },
+
+  actionCreatePesan: async (req, res) => {
+    try {
+      const { id } = req.params
+      const { text_message } = req.body
+      const mahasiswa = await Mahasiswa.findOne({ _id : id})
+
+      // Generate link  whatsapp
+      const link = getLinkWhastapp(mahasiswa.no_wa, text_message)
+      
+      // Save data pesan in db
+      const resPesan = await Pesan({ text: text_message, link })
+      await resPesan.save();
+
+      // Update data mahasiswa (field pesan from resPesan)
+      await Mahasiswa.findOneAndUpdate({
+        _id: id
+      }, { pesan: resPesan._id })
+
+      req.flash('alertMessage', "Berhasil tambah data pesan whatsapp")
+      req.flash('alertStatus', "success")
+
+      res.redirect(`/mahasiswa`)
+
+
     } catch (err) {
       req.flash('alertMessage', `${err.message}`)
       req.flash('alertStatus', 'danger')
