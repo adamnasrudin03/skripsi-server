@@ -36,7 +36,7 @@
                 <form action="/ajaran/edit/<%= ajaran._id %>?_method=PUT" method="post">
                   <div class="card-body">
                     <div class="form-group">
-                      <label for="start_year">Tahun Awal</label>
+                      <label for="start_year">Tahun Awal  <sup style="color: #ff0000;">*</sup></label>
                       <input 
                         type="number"
                         class="form-control"
@@ -49,7 +49,7 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="end_year">Tahun Akhir</label>
+                        <label for="end_year">Tahun Akhir  <sup style="color: #ff0000;">*</sup></label>
                         <input
                           type="number"
                           class="form-control"
@@ -62,7 +62,7 @@
                     </div>
                       
                     <div class="form-group">
-                        <label for="semester">Semester <%= ajaran.semester %></label>
+                        <label for="semester">Semester <sup style="color: #ff0000;">*</sup></label>
                         <select id="semester" name="semester" class="form-control select2" style="width: 100%;" required>
                             <option selected="selected" value="" hidden>Masukan semester tahun ajaran</option>
                             <option value="ganjil"
@@ -79,7 +79,7 @@
                     </div>
                       
                     <div class="form-group">
-                      <label  for="start_at" >Tanggal Awal Periode</label>
+                      <label  for="start_at" >Tanggal Awal Periode  <sup style="color: #ff0000;">*</sup></label>
                         <div class="input-group date" id="start_at" data-target-input="nearest">
                             <input type="text" id="start_at" name="start_at" class="form-control datetimepicker-input" data-target="#start_at" 
                                 placeholder="Masukan tanggal awal pengajuan proposal"  value="<%= ajaran.start_at %>" required/>
@@ -90,7 +90,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label  for="end_at" >Tanggal Akhir Periode</label>
+                        <label  for="end_at" >Tanggal Akhir Periode  <sup style="color: #ff0000;">*</sup></label>
                           <div class="input-group date" id="end_at" data-target-input="nearest">
                               <input type="text" id="end_at" name="end_at" class="form-control datetimepicker-input" data-target="#end_at"
                                 placeholder="Masukan tanggal akhir pengajuan proposal" value="<%= ajaran.end_at %>" required/>
