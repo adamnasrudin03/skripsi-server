@@ -195,6 +195,15 @@ module.exports={
         return
       }
 
+      const mahasiswaByDosen2 = await Mahasiswa.find({dosen2: id}).count()
+      if (mahasiswaByDosen2 > 0) {
+        req.flash('alertMessage', "Data tidak dapat dihapus, karena relasi dengan data lain.")
+        req.flash('alertStatus', "danger")
+  
+        res.redirect('/dosen')
+        return;
+      }
+
       await Dosen.findOneAndRemove({
         _id: id
       });
