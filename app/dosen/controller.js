@@ -28,7 +28,7 @@ module.exports={
     try {
       res.render('admin/dosen/create',{
         admin: req.session.user,
-        title: 'Taambah Dosen Pembimbing'
+        title: 'Tambah Dosen Pembimbing'
       })
     } catch (err) {
       req.flash('alertMessage', `${err.message}`)

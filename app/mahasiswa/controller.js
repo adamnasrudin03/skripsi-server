@@ -333,7 +333,7 @@ module.exports={
         rekomendasi: finalRangkingDosen,
         dosen2,
         admin: req.session.user,
-        title: 'Detail Pengajuan Peoposal'
+        title: 'Detail Pengajuan Proposal'
       })
       
     } catch (err) {

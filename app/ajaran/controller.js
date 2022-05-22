@@ -27,7 +27,7 @@ module.exports={
     try {
       res.render('admin/ajaran/create',{
         admin: req.session.user,
-        title: 'Taambah Tahun Ajaran'
+        title: 'Tambah Tahun Ajaran'
       })
     } catch (err) {
       req.flash('alertMessage', `${err.message}`)
