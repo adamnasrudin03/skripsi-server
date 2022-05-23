@@ -364,11 +364,8 @@
                     selected
                     <% } %> 
                   >
-                  <%= i + 1 %> .) 
-                  <%= rekomendasi[i].nama %>
-                  <% if(rekomendasi[i].gelar ) { %>
-                    , <%= rekomendasi[i].gelar %>
-                  <% } %>
+                  <%= i + 1 %>.) 
+                  <%= rekomendasi[i].nama %>, <%= rekomendasi[i].gelar %>
                   &ensp;
                   - Nilai : <%= rekomendasi[i].nilai %>
                 </option>
@@ -387,11 +384,8 @@
                     selected
                     <% } %> 
                   >
-                  <%= j + 1 %> .) 
-                  <%= dosen2[j].nama %>
-                  <% if(dosen2[j].gelar ) { %>
-                    , <%= dosen2[j].gelar %>
-                  <% } %>
+                  <%= j + 1 %>.) 
+                  <%= dosen2[j].nama %>, <%= dosen2[j].gelar %>
                 </option>
               <% } %>
             </select>
