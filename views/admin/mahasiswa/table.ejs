@@ -49,18 +49,17 @@
             <% }  %>
           </td>
           <td>
-            <%= mahasiswa[i]?.dosen?.nama ?? '-' %>
-            
-            <% if(mahasiswa[i]?.dosen?.gelar) { %>
-              , <%= mahasiswa[i].dosen.gelar %>
+            <% if(mahasiswa[i]?.dosen?.nama) { %>
+              <%= mahasiswa[i].dosen.nama %>, <%= mahasiswa[i].dosen.gelar %>
+            <% } else { %>
+              -
             <% } %>
-            
           </td>
           <td>
-            <%= mahasiswa[i]?.dosen2?.nama ?? '-' %>
-            
-            <% if(mahasiswa[i]?.dosen2?.gelar) { %>
-              , <%= mahasiswa[i].dosen2.gelar %>
+            <% if(mahasiswa[i]?.dosen2?.nama) { %>
+              <%= mahasiswa[i].dosen2.nama %>, <%= mahasiswa[i].dosen2.gelar %>
+            <% } else { %>
+              -
             <% } %>
             
           </td>
