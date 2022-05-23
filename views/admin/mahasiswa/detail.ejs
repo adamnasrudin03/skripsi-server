@@ -195,6 +195,7 @@
                     <label for="dosen1" class="col-sm-2 col-form-label">Dosen Pembimbing 1 Saat Ini  </label>
                     <div class="col-sm-10">
                       <span  id="dosen1" >
+                        :
                         <% if(mahasiswa?.dosen?.nama) { %>
                           <%= mahasiswa.dosen.nama %>, <%= mahasiswa.dosen.gelar %>
                         <% } else { %>
@@ -208,6 +209,7 @@
                     <label for="dosen2" class="col-sm-2 col-form-label">Dosen Pembimbing 2 Saat Ini  </label>
                     <div class="col-sm-10">
                       <span  id="dosen2" >
+                        :
                         <% if(mahasiswa?.dosen2?.nama) { %>
                           <%= mahasiswa.dosen2.nama %>, <%= mahasiswa.dosen2.gelar %>
                         <% } else { %>
