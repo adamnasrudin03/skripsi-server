@@ -52,7 +52,10 @@
           <td>
             <form action="/dosen/status/<%= dosen[i]._id %>?_method=PUT" method="post" 
               style="display: inline-block; margin: 2px;">
-              <button class="btn btn-primary btn-sm" title="Hidupkan / Matikan" type="submit">
+              <button class="btn btn-primary btn-sm" title="Hidupkan / Matikan" type="submit"
+                <% if(admin.role === 'guest') { %>
+                  disabled
+                <% } %> >
                 <% if(dosen[i].status === 'Y') { %>
                   <i class="fas fa-user-minus"></i>
                     Matikan
@@ -69,7 +72,10 @@
               </a>
 
             <form action="/dosen/delete/<%= dosen[i]._id %>?_method=DELETE" method="post" style="display: inline-block; margin: 2px;">
-              <button class="btn btn-danger btn-sm" title="Hapus" type="submit">
+              <button class="btn btn-danger btn-sm" title="Hapus" type="submit"
+                <% if(admin.role === 'guest') { %>
+                  disabled
+                <% } %> >
                 <i class="fas fa-trash"></i>
                 Hapus
               </button>
