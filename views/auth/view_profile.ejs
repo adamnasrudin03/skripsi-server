@@ -42,7 +42,15 @@
                 </div>
 
                 <h3 class="profile-username text-center"><%= admin.name %></h3>
-                <p class="text-muted text-center"><%= admin.role %></p>
+                <p class="text-muted text-center">
+                  <% if(admin.role === 'guest') { %>
+                    Tamu
+                  <% } else if(admin.role === 'admin') { %>
+                    Admin
+                  <% } else if(admin.role === 'super_admin') { %>
+                    Super Admin
+                  <% } %>
+                </p>
                 
               </div>
               
