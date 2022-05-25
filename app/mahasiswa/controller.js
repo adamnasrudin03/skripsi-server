@@ -1,4 +1,5 @@
 const Mahasiswa = require('./model')
+const Ajaran = require('./../ajaran/model')
 const Dosen = require('./../dosen/model')
 const Pesan = require('./../pesan/model')
 const nilai = require('./../dosen/nilai');
@@ -482,6 +483,12 @@ module.exports={
         no_wa = no_wa;
       } else {
         no_wa = "62" + no_wa;
+      }
+
+      const checkAjaran = await Ajaran.findOne({ _id : ajaran})
+      if (!checkAjaran) {
+        res.status(404).json({ message: `Tahun ajaran tidak ditemukan.` , data: undefined });
+        return;
       }
 
       let mahasiswa = await Mahasiswa({ npm, nama, semester, email, no_wa, 
