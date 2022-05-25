@@ -23,7 +23,10 @@
 
           <form action="/ajaran/delete/<%= ajaran[i]._id %>?_method=DELETE" method="post" 
             style="display: inline-block; margin: 2px;">
-            <button class="btn btn-danger btn-sm" title="Hapus" type="submit">
+            <button class="btn btn-danger btn-sm" title="Hapus" type="submit"
+              <% if(admin.role === 'guest') { %>
+                disabled
+              <% } %> >
               <i class="fas fa-trash"></i>
               Hapus
             </button>
