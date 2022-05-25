@@ -15,8 +15,8 @@ let userSchema = mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['admin', 'super_admin', 'user'],
-    default: 'admin'
+    enum: ['admin', 'super_admin', 'guest'],
+    default: 'guest'
   },
   status: {
     type: String,
