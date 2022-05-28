@@ -71,6 +71,15 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error', {
+    admin: {
+      id: req?.session?.user?.id ?? '',
+      email: req?.session?.user?.email ?? '',
+      status: req?.session?.user?.status ?? '',
+      name: req?.session?.user?.name ?? '',
+      gender: req?.session?.user?.gender ?? '',
+      role: req?.session?.user?.role ?? '',
+      phoneNumber: req?.session?.user?.phoneNumber ?? '',
+      avatar: req?.session?.user?.avatar ?? '' },
     title: err.status + " | " + err.message,
     message: err.message
 
