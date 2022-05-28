@@ -1,14 +1,21 @@
-<table id="example2" class="table table-bordered table-hover" style="text-align: justify;">
+<table id="example1" class="table table-bordered table-hover" style="text-align: justify;">
     <thead>
     <tr>
       <th>No</th>
       <th>Tahun Ajaran</th>
       <th>NPM</th>
       <th>Nama</th>
+      <th>No WhatsApp</th>
+      <th>Email</th>
+      <th>Mahasiswa Lanjutan</th>
+      <th>Semester</th>
       <th>Judul Skripsi</th>
       <th>Tema Skripsi</th>
+      <th>Dosen Pembimbing 1 Sebelumnya</th>
+      <th>Dosen Pembimbing 2 Sebelumnya</th>
       <th>Dosen Pembimbing 1</th>
       <th>Dosen Pembimbing 2</th>
+      <th>Mata Kuliah Lain</th>
       <th>Status</th>
       <th>Aksi</th>
     </tr>
@@ -26,6 +33,16 @@
           </td>
           <td><%= mahasiswa[i].npm %> </td>
           <td><%= mahasiswa[i].nama %> </td>
+          <td><%= mahasiswa[i].no_wa %> </td>
+          <td><%= mahasiswa[i].email %> </td>
+          <td>
+            <% if(mahasiswa[i].lanjutan === true) { %>
+              Ya
+            <% } else  { %>
+              Tidak
+            <% }  %>
+          </td>
+          <td><%= mahasiswa[i].semester %> </td>
           <td>
             <%= mahasiswa[i].judul_skripsi %>
           </td>
@@ -49,6 +66,20 @@
             <% }  %>
           </td>
           <td>
+            <% if(mahasiswa[i]?.dosen_sebelum) { %>
+              <%= mahasiswa[i].dosen_sebelum %>
+            <% } else { %>
+               -
+            <% } %>
+          </td>
+          <td>
+            <% if(mahasiswa[i]?.dosen_sebelum2) { %>
+              <%= mahasiswa[i].dosen_sebelum2 %>
+            <% } else { %>
+               -
+            <% } %>
+          </td>
+          <td>
             <% if(mahasiswa[i]?.dosen?.nama) { %>
               <%= mahasiswa[i].dosen.nama %>, <%= mahasiswa[i].dosen.gelar %>
             <% } else { %>
@@ -63,6 +94,7 @@
             <% } %>
             
           </td>
+          <td><%= mahasiswa[i].mata_kuliah_lain %> </td>
           <td>
             <% if(mahasiswa[i].status === 'pending') { %>
               <span class="badge badge-warning">
