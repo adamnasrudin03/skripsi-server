@@ -1,0 +1,134 @@
+<%- include ../../partials/header.ejs %>
+<%- include ../../partials/navbar.ejs %>
+<%- include ../../partials/sidebar.ejs %>
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>User</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/">Beranda</a></li>
+              <li class="breadcrumb-item"><a href="/user">User</a></li>
+              <li class="breadcrumb-item active">Ubah</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-primary">
+                <div class="card-header">
+                  <h3 class="card-title">Form Ubah User</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form action="/user/edit/<%= user._id %>?_method=PUT" method="post">
+                  <div class="card-body">
+
+                    <div class="form-group">
+                      <label for="name">Nama Lengkap <sup style="color: #ff0000;">*</sup></label>
+                      <input type="text" class="form-control" id="name" name="name"  placeholder="Masukan nama lengkap user" 
+                        required
+                        value="<%= user.name %>"
+                        >
+                    </div>
+                      
+                    <div class="form-group">
+                      <label for="email">Email <sup style="color: #ff0000;">*</sup></label>
+                      <input type="email" class="form-control" id="email" name="email" placeholder="Masukan email user" 
+                        required
+                        value="<%= user.email %>"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                      <label for="phoneNumber">No Whatsapp <sup style="color: #ff0000;">*</sup></label>
+                      
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">+62</span>
+                        <input type="number" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Masukan no whatsapp user" 
+                          required
+                          value="<%= user.phoneNumber %>"
+                          >
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="gender">Jenis Kelamin <sup style="color: #ff0000;">*</sup></label>
+                      <select id="gender" name="gender" class="form-control select2" style="width: 100%;" required>
+                          <option selected="selected" value="" hidden>Masukan jenis kelamin user </option>
+                          <option value="male"
+                            <% if(user.gender == "male") { %>
+                            selected
+                            <% } %> 
+                            >Laki-laki</option>
+                          <option value="female"
+                            <% if(user.gender == "female") { %>
+                            selected
+                            <% } %> 
+                            >Perempuan</option>
+                      </select>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="role">Hak Akses <sup style="color: #ff0000;">*</sup></label>
+                      <select id="role" name="role" class="form-control select2" style="width: 100%;" required>
+                          <option selected="selected" value="" hidden>Masukan hak akses user</option>
+                          <option value="super_admin" 
+                            <% if(user.role == "super_admin") { %>
+                            selected
+                            <% } %> 
+                            >Super Admin</option>
+                          <option value="admin"
+                            <% if(user.role == "admin") { %>
+                            selected
+                            <% } %> 
+                            >Admin</option>
+                          <option value="guest"
+                            <% if(user.role == "guest") { %>
+                            selected
+                            <% } %> 
+                            >Tamu</option>
+                      </select>
+                    </div>
+                  
+                    </div>
+                  <!-- /.card-body -->
+  
+                  <div class="card-footer">
+                    <a href="/user" class="btn btn-default">
+                      <i class="fas fa-arrow-left"></i>
+                      Kembali
+                    </a>
+                    <button type="submit" class="btn btn-primary float-right" 
+                    <% if(admin.role != 'super_admin')  { %>
+                      disabled
+                    <% } %> >
+                      <i class="fas fa-save"></i>
+                      Simpan
+                    </button>
+                  </div>
+                </form>
+              </div>
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+<%- include ../../partials/footer.ejs %>
+<%- include ../../partials/js.ejs %>

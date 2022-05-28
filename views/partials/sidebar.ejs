@@ -21,6 +21,18 @@
               </p>
             </a>
           </li>
+          
+          <% if(admin.role == 'super_admin') { %>
+              <li class="nav-item">
+                <a href="/user" class="nav-link">
+                  <i class="nav-icon fas fa-user-alt"></i>
+                  <p>
+                    User
+                  </p>
+                </a>
+              </li>
+          <% } %>
+
           <li class="nav-header">Pengajuan</li>
           
           <li class="nav-item">
