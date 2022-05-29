@@ -49,7 +49,7 @@
             <form action="/user/status/<%= user[i]._id %>?_method=PUT" method="post" 
               style="display: inline-block; margin: 2px;">
               <button class="btn btn-primary btn-sm" title="Hidupkan / Matikan" type="submit"
-                <% if(admin.role != 'super_admin')  { %>
+                <% if(admin.role != 'super_admin' || admin.id == user[i]._id)  { %>
                   disabled
                 <% } %> >
                 <% if(user[i].status === 'Y') { %>
@@ -62,14 +62,20 @@
               </button>
             </form>
 
+            <% if(admin.id == user[i]._id) { %>
+              <a href="/profile%>" class="btn btn-info btn-sm"  title="Ubah" style="margin: 2px;">
+                <i class="fas fa-pencil-alt"></i>
+                Ubah
+              </a>
+            <% } else { %> 
               <a href="/user/edit/<%= user[i]._id %>" class="btn btn-info btn-sm"  title="Ubah" style="margin: 2px;">
                 <i class="fas fa-pencil-alt"></i>
                 Ubah
               </a>
-
+              <% } %>
             <form action="/user/delete/<%= user[i]._id %>?_method=DELETE" method="post" style="display: inline-block; margin: 2px;">
               <button class="btn btn-danger btn-sm" title="Hapus" type="submit"
-                <% if(admin.role != 'super_admin') { %>
+                <% if(admin.role != 'super_admin' || admin.id == user[i]._id)  { %>
                   disabled
                 <% } %> >
                 <i class="fas fa-trash"></i>
