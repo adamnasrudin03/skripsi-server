@@ -243,7 +243,7 @@ module.exports={
       const alertMessage = req.flash("alertMessage")
       const alertStatus = req.flash("alertStatus")
       
-      const ajaran = await Ajaran.find()
+      const ajaran = await Ajaran.find().sort({ _id: -1 })
 
       const alert = { message: alertMessage, status: alertStatus}
       const mahasiswa = await Mahasiswa.find( ajaranID&&ajaranID !=="all" ? { ajaran: ajaranID} : {} ).sort({ _id: -1 })
