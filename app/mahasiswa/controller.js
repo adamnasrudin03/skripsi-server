@@ -239,11 +239,14 @@ function getLinkWhastapp(number, message) {
 module.exports={
   index: async(req, res)=>{
     try {
+      let ajaranID = req.query.ajaran_id;
       const alertMessage = req.flash("alertMessage")
       const alertStatus = req.flash("alertStatus")
+      
+      const ajaran = await Ajaran.find()
 
       const alert = { message: alertMessage, status: alertStatus}
-      const mahasiswa = await Mahasiswa.find().sort({ _id: -1 })
+      const mahasiswa = await Mahasiswa.find( ajaranID&&ajaranID !=="all" ? { ajaran: ajaranID} : {} ).sort({ _id: -1 })
         .populate({
           'path':'ajaran',
           'model':'Ajaran'
@@ -259,6 +262,7 @@ module.exports={
 
       res.render('admin/mahasiswa/view_mahasiswa',{
         mahasiswa,
+        ajaran,
         alert,
         admin: req.session.user,
         title: 'Pengajuan Proposal Skripsi'

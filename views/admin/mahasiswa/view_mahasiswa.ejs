@@ -28,14 +28,29 @@
           <div class="col-12">
             <div class="card">
 
-              <!-- <div class="card-header">
+              <div class="card-header">
                 <h3 class="card-title">
-                    <a href="/mahasiswa/create" class="btn btn-primary">
-                        <i class="nav-icon far fa-plus-square"></i>
-                        Tambah
-                    </a>
+                  
+                  <div class="form-group" style="display: inline-block; margin: 0px;">
+                      <label for="ajaran_id">Tahun Ajaran</label>
+                      <select id="ajaran_id" name="ajaran_id" class="form-control select2" style="width: 100%;" required>
+                          <option selected="selected" value="all" >Semua Tahun Ajaran</option>
+                          <% for(let j = 0; j < ajaran.length; j++){ %>
+                            <option value="<%= ajaran[j]._id %>">
+                              <% if(ajaran[j].semester) { %>
+                                <%= ajaran[j].start_year %> - <%= ajaran[j].end_year %> ( <%= ajaran[j].semester %> )
+                              <% } %>
+                            </option>
+                          <% } %>
+                      </select>
+                  </div>&ensp;
+                  <button onclick="myFilter()" class="btn btn-primary" 
+                    style="display: inline-block; margin: 0px;">
+                      <i class="nav-icon fas fa-filter"></i>&ensp;
+                      Filter 
+                  </button>
                 </h3>
-              </div> -->
+              </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <%- include ./table.ejs %>
@@ -53,4 +68,13 @@
 </div>
 
 <%- include ../../partials/footer.ejs %>
+
+<script>
+  function myFilter() {
+    var x = document.getElementById("ajaran_id");
+    var i = x.selectedIndex;
+    window.location.href = `/mahasiswa?ajaran_id=${x.options[i].value}`;
+  }
+</script>
+
 <%- include ../../partials/js.ejs %>
