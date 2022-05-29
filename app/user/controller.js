@@ -15,7 +15,7 @@ module.exports={
         user,
         alert,
         admin: req.session.user,
-        title: 'User'
+        title: 'List Akun'
       })
     } catch (err) {
       req.flash('alertMessage', `${err.message}`)
@@ -28,7 +28,7 @@ module.exports={
     try {
       res.render('admin/user/create',{
         admin: req.session.user,
-        title: 'Tambah User'
+        title: 'Tambah Akun'
       })
     } catch (err) {
       req.flash('alertMessage', `${err.message}`)
@@ -72,7 +72,7 @@ module.exports={
         let user = await User({ email, password: hashPassword, name, gender, role, phoneNumber: formatWA })
         await user.save();
 
-        req.flash('alertMessage', "Berhasil tambah data user")
+        req.flash('alertMessage', "Berhasil tambah data akun")
         req.flash('alertStatus', "success")
   
         res.redirect('/user')
@@ -103,7 +103,7 @@ module.exports={
         _id: id
       }, { status })
 
-      req.flash('alertMessage', "Berhasil ubah status user")
+      req.flash('alertMessage', "Berhasil ubah status akun")
       req.flash('alertStatus', "success")
 
       res.redirect('/user')
@@ -132,7 +132,7 @@ module.exports={
       res.render('admin/user/edit', {
         user,
         admin: req.session.user,
-        title: 'Ubah User'
+        title: 'Ubah Akun'
       })
       
     } catch (err) {
@@ -208,7 +208,7 @@ module.exports={
       const user = await User.findOne({ _id: id })
 
       if (user.status == 'Y') {
-        req.flash('alertMessage', "Data tidak dapat dihapus, karena user masih aktif.")
+        req.flash('alertMessage', "Data tidak dapat dihapus, karena akun tersebut masih aktif.")
         req.flash('alertStatus', "danger")
   
         res.redirect('/user')
@@ -216,7 +216,7 @@ module.exports={
       }
 
       if (user.role == 'super_admin') {
-        req.flash('alertMessage', "Data tidak dapat dihapus, karena akses user tersebut Super Admin.")
+        req.flash('alertMessage', "Data tidak dapat dihapus, karena akses akun tersebut Super Admin.")
         req.flash('alertStatus', "danger")
   
         res.redirect('/user')
@@ -227,7 +227,7 @@ module.exports={
         _id: id
       });
 
-      req.flash('alertMessage', "Berhasil hapus data user")
+      req.flash('alertMessage', "Berhasil hapus data akun")
       req.flash('alertStatus', "success")
 
       res.redirect('/user')
