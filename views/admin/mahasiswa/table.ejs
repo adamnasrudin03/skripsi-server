@@ -25,10 +25,8 @@
         <tr>
           <td><%= i + 1 %></td>
           <td>
-              <%= mahasiswa[i]?.ajaran?.start_year ?? '' %> - <%= mahasiswa[i]?.ajaran?.end_year ?? ''%> 
-                            
               <% if(mahasiswa[i]?.ajaran?.semester) { %>
-                ( <%= mahasiswa[i].ajaran.semester %> )
+                <%= mahasiswa[i].ajaran.start_year %> - <%= mahasiswa[i].ajaran.end_year %> ( <%= mahasiswa[i].ajaran.semester %> )
               <% } %>
           </td>
           <td><%= mahasiswa[i].npm %> </td>
