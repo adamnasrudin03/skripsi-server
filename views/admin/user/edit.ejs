@@ -82,7 +82,10 @@
                     
                     <div class="form-group">
                       <label for="role">Hak Akses <sup style="color: #ff0000;">*</sup></label>
-                      <select id="role" name="role" class="form-control select2" style="width: 100%;" required>
+                      <select id="role" name="role" class="form-control select2" style="width: 100%;"
+                       <% if(user.role == "super_admin") { %>
+                        disabled
+                        <% } %> >
                           <option selected="selected" value="" hidden>Masukan hak akses user</option>
                           <option value="super_admin" 
                             <% if(user.role == "super_admin") { %>
@@ -94,11 +97,11 @@
                             selected
                             <% } %> 
                             >Admin</option>
-                          <option value="guest"
+                          <!-- <option value="guest"
                             <% if(user.role == "guest") { %>
                             selected
                             <% } %> 
-                            >Tamu</option>
+                            >Tamu</option> -->
                       </select>
                     </div>
                   
