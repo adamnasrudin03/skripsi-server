@@ -59,7 +59,7 @@ async function getMax(dataDosen) {
     fungsional: maxFungsional,
     jumlah: maxJumlah,
     bidangAplikasiDesktop: maxAppDesktop,
-    bidanAplikasiWeb: maxAppWeb,
+    bidangAplikasiWeb: maxAppWeb,
     bidangAplikasiMobile: maxAppMobile,
     bidangDataMining: maxDataMining,
     bidangIOT: maxIOT,
@@ -121,12 +121,14 @@ function normalisasi(dataDosen, nilaiMax, mahasiswa) {
     let c1 = {
       nilai: dataDosen[j].pendidikan / nilaiMax.pendidikan
     }
+    c1.nilai = parseFloat(c1.nilai).toFixed(3)
 
     // Normalisasi kriteria fungsional
     let c2 = {
       nilai: dataDosen[j].fungsional / nilaiMax.fungsional
     }
 
+    c2.nilai = parseFloat(c2.nilai).toFixed(3)
     // Normalisasi kriteria Kompetensi / tema
     let c3 = {
       nilai: 0
@@ -138,7 +140,7 @@ function normalisasi(dataDosen, nilaiMax, mahasiswa) {
         break;
     
       case 'bidang_aplikasi_web':
-        c3.nilai =  dataDosen[j].bidang_aplikasi_web / nilaiMax.bidanAplikasiWeb;
+        c3.nilai =  dataDosen[j].bidang_aplikasi_web / nilaiMax.bidangAplikasiWeb;
         break;
     
       case 'bidang_aplikasi_mobile':
@@ -170,10 +172,12 @@ function normalisasi(dataDosen, nilaiMax, mahasiswa) {
         break;
     }
 
+    c3.nilai = parseFloat(c3.nilai).toFixed(3)
     // Normalisasi kriteria jumlah
     let c4 = {
       nilai: dataDosen[j].jumlah / nilaiMax.jumlah
     }
+    c4.nilai = parseFloat(c4.nilai).toFixed(3)
 
     let normalisasi = {
       id: dataDosen[j]._id,
@@ -199,7 +203,7 @@ async function perangkingan(normalisasiDosen) {
   // Proses Final Perankingan
   for (let k = 0; k < normalisasiDosen.length; k++) {
     let a = (nilaiKriteria.c1 * normalisasiDosen[k].c1.nilai) + (nilaiKriteria.c2 * normalisasiDosen[k].c2.nilai);
-    let b = (nilaiKriteria.c3 * normalisasiDosen[k].c3.nilai) + (nilaiKriteria.c4 * normalisasiDosen[k].c4.nilai) ;
+    let b = (nilaiKriteria.c3 * normalisasiDosen[k].c3.nilai) + (nilaiKriteria.c4 * normalisasiDosen[k].c4.nilai);
 
     let v = {
       nilai: a + b
