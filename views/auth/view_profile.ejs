@@ -11,12 +11,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Detail Admin Profile</h1>
+            <h1>Detail Profil</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/dashboard">Beranda</a></li>
-              <li class="breadcrumb-item active">Detail Admin Profile</li>
+              <li class="breadcrumb-item active">Detail Profil</li>
             </ol>
           </div>
         </div>
@@ -68,7 +68,7 @@
                 <div class="tab-content">
 
                   <div class="active tab-pane" id="overview">
-                    <h3>Detail Profile</h3>
+                    <h3>Detail Profil</h3>
                     <hr/>
                     <form class="form-horizontal">
                       <div class="form-group row">
@@ -111,7 +111,13 @@
                         <label for="spanRole" class="col-sm-2 col-form-label">Akses</label>
                         <div class="col-sm-10">
                           <span  id="spanRole" >
-                            <%= admin.role %>
+                            <% if(admin.role === 'guest') { %>
+                              Tamu
+                            <% } else if(admin.role === 'admin') { %>
+                              Admin
+                            <% } else if(admin.role === 'super_admin') { %>
+                              Super Admin
+                            <% } %>
                           </span>
                         </div>
                       </div>
