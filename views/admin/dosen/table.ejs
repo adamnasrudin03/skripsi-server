@@ -52,16 +52,16 @@
           <td>
             <form action="/dosen/status/<%= dosen[i]._id %>?_method=PUT" method="post" 
               style="display: inline-block; margin: 2px;">
-              <button class="btn btn-primary btn-sm" title="Hidupkan / Matikan" type="submit"
+              <button class="btn btn-primary btn-sm" title="Aktifkan / Nonaktifkan" type="submit"
                 <% if(admin.role === 'guest') { %>
                   disabled
                 <% } %> >
                 <% if(dosen[i].status === 'Y') { %>
                   <i class="fas fa-user-minus"></i>
-                    Matikan
+                    Nonaktifkan
                 <% } else { %>
                   <i class="fas fa-user-check"></i>
-                    Hidupkan
+                    Aktifkan
                 <% } %>
               </button>
             </form>
