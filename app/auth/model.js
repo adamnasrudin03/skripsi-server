@@ -30,7 +30,9 @@ let userSchema = mongoose.Schema({
   },
   phoneNumber: {
     type: String,
-    require: [true, 'nomor telpon harus diisi']
+    require: [true, 'nomor WhatsApp harus diisi'],
+    maxlength :[13, "panjang nomor WhatsApp harus antara 9 - 13 karakter"],
+    minlength :[9, "panjang nomor WhatsApp harus antara 9 - 13 karakter"]
   },
   avatar : {type : String},
 
